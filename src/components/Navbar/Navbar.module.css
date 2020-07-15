@@ -1,0 +1,22 @@
+.nav {
+    position: fixed;
+    grid-area: n;
+    background-color: #ffffff;
+    margin: 118px 0 0 14px;
+}
+
+.item {
+    color: black;
+}
+
+.item a {
+    text-decoration: none;
+}
+
+.item a:hover {
+    color:gold;
+}
+
+.active {
+    color: gold;
+}
