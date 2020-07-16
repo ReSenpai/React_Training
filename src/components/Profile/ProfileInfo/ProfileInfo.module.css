@@ -1,0 +1,10 @@
+.images {
+    width: 900px;
+    border-radius: 10px;
+    border: 1px solid #ccd6dd;
+
+}
+
+.img__wrapper {
+    padding: 20px;
+}
