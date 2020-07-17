@@ -1,7 +1,35 @@
-.dialogs__item .active {
-    color: gold;
+.dialog__wrapper {
+    margin-bottom: 15px;
 }
 
 .dialog {
+    display: flex;
+    align-items: center;
+    object-fit: cover;
+    width: 126px;
+    border: 1px solid #ccd6dd;
+    border-radius: 50px 25px 25px 50px;
+    transition: 0.15s;
+}
 
+.dialog:hover {
+    border-color: #979b9e;
+    transition: 0.3s;
+}
+
+.avatar {
+    width: 50px;
+    height: 50px;
+    margin-right: 10px;
+    object-fit: cover;
+    border-radius: 50px;
+}
+
+.active {
+    color: black;
+    border-color: #979b9e;
+    font-size: 17px;
+    box-shadow: 7px 5px 5px #a9aeb0;
+    transform: scale(1.1);
+    transition: 0.3s;
 }
