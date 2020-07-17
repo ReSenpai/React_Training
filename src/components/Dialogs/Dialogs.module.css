@@ -5,13 +5,12 @@
 
 .dialogs__item {
     padding: 10px;
-}
-
-.dialogs__item .active {
-    color: gold;
+    margin-right: 20px;
 }
 
 .messages {
-    padding: 10px;
+    padding: 20px;
+    border: 1px solid #ccd6dd;
+    max-width: 600px;
 }
 
