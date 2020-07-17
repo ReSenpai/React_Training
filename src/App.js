@@ -9,18 +9,25 @@ import News from './components/News/News';
 import Music from './components/Music/Music';
 import Setting from './components/Setting/Setting';
 
-const App = () => {
+const App = (props) => {
   return (
     <HashRouter>
       <div className='app-wrapper'>
         <Header />
         <Navbar />
         <div className='app-wrapper-content'>
-          <Route path='/profile' render={ () => <Profile /> } />
-          <Route path='/messages' render={ () => <Dialogs /> } />
-          <Route path='/news' render={ () => <News /> } />
-          <Route path='/music' render={ () => <Music /> } />
-          <Route path='/setting' render={ () => <Setting /> } />
+          <Route path='/profile'
+            render={() => <Profile
+              state={ props.state.profilePage } />} />
+          <Route path='/messages'
+            render={() => <Dialogs
+              state={ props.state.dialogsPage } />} />
+          <Route path='/news'
+            render={() => <News />} />
+          <Route path='/music'
+            render={() => <Music />} />
+          <Route path='/setting'
+            render={() => <Setting />} />
         </div>
       </div>
     </HashRouter>
