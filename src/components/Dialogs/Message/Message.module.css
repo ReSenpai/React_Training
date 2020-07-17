@@ -1,0 +1,10 @@
+.message__wrapper {
+    padding: 10px;
+    margin: 10px;
+}
+
+.message {
+    padding: 10px;
+    background-color: grey;
+    border-radius: 25px;
+}
