@@ -1,20 +1,7 @@
 import React from 'react';
-import style from './Dialogs.module.css'
-import { NavLink } from 'react-router-dom';
-
-const DialogItem = (props) => {
-    return (
-        <div className={style.dialog + ' ' + style.active}>
-            <NavLink to={`/messages/${props.id}`}>{props.name}</NavLink>
-        </div>
-    )
-}
-
-const Message = (props) => {
-    return (
-        <div className={style.message}>{props.message}</div>
-    )
-}
+import style from './Dialogs.module.css';
+import DialogItem from './DialogItem/DialogItem';
+import Message from './Message/Message';
 
 const Dialogs = (props) => {
 
@@ -28,7 +15,7 @@ const Dialogs = (props) => {
         {id: 7, name: 'Korina'},
     ]
 
-    let essagesData = [
+    let messages = [
         {id: 1, message: 'Hello'},
         {id: 2, message: "I don't no"},
         {id: 3, message: 'Abrakadabra'},
@@ -38,25 +25,19 @@ const Dialogs = (props) => {
         {id: 7, message: 'Poly'},
     ]
 
+    let dialogElements = dialogsData
+    .map( (dialog, i) => <DialogItem key={i} name={ dialog.name } id={ dialog.id } />)
+
+    let messagesElement = messages
+    .map( (message, i) => <Message key={i} message={message.message} />)
+
     return (
         <div className={style.dialogs}>
             <div className={style.dialogs__item}>
-                <DialogItem name='Dimich' id='1' />
-                <DialogItem name='Sveta' id='2' />
-                <DialogItem name='Valera' id='3' />
-                <DialogItem name='Polya' id='4' />
-                <DialogItem name='Anna' id='5' />
-                <DialogItem name='Oliva' id='6' />
-                <DialogItem name='Korina' id='7' />
+                { dialogElements }
             </div>
             <div className={style.messages}>
-                <Message message='Hello' />
-                <Message message="I don't no" />
-                <Message message='Abrakadabra' />
-                <Message message='Step for my sister' />
-                <Message message='Omnon nim' />
-                <Message message='Nuaah' />
-                <Message message='Poly' />
+                { messagesElement }
             </div>
         </div>
     )
