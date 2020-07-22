@@ -6,7 +6,6 @@ const InputMessage = (props) => {
     let newMessageElement = React.createRef();
 
     let sendMessage = () => {
-        newMessageElement.current.value = '';
         props.sendMessage();
     }
 
