@@ -17,25 +17,27 @@ const App = (props) => {
         <Navbar />
         <div className='app-wrapper-content'>
           <Route path='/profile'
-            render={() => <Profile
-              profilePage={ props.state.profilePage }
+            render={ () => <Profile
+              posts={ props.state.profilePage.posts }
+              newPostText={ props.state.profilePage.newPostText }
               addPost={ props.addPost }
               updateNewPostText={ props.updateNewPostText } />} />
           <Route path='/messages'
-            render={() => <Dialogs
-              state={ props.state.dialogsPage }
+            render={ () => <Dialogs
+              dialogs={ props.state.dialogsPage.dialogs }
+              messages={ props.state.dialogsPage.messages }
+              newMessageText={ props.state.dialogsPage.newMessageText }
               sendMessage={ props.sendMessage }
               updateNewMessageText={ props.updateNewMessageText } />} />
           <Route path='/news'
-            render={() => <News />} />
+            render={ () => <News />} />
           <Route path='/music'
-            render={() => <Music />} />
+            render={ () => <Music />} />
           <Route path='/setting'
-            render={() => <Setting />} />
+            render={ () => <Setting />} />
         </div>
       </div>
     </HashRouter>
-
   );
 }
 
