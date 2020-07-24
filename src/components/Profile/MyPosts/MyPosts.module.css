@@ -1,7 +1,9 @@
 .textarea {
-    width: 300px;
+    width: 700px;
     height: 150px;
     background-color: #ccd6dd;
+    padding: 15px;
+    font-size: 20px;
 }
 
 .posts {
