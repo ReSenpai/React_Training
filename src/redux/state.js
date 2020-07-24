@@ -1,3 +1,8 @@
+const ADD_POST = 'ADD-POST';
+const SEND_MESSAGE = 'SEND-MESSAGE';
+const UPDATE_NEW_POST_TEXT = 'UPDATE-NEW-POST-TEXT';
+const UPDATE_NEW_MESSAGE_TEXT = 'UPDATE-NEW-MESSAGE-TEXT';
+
 let store = {
     _subscriber() {
         console.log('No subscribers (observers)')
@@ -44,48 +49,102 @@ let store = {
     subscribe(observer) {
         this._subscriber = observer;
     },
-    addPost() {
-        let text = this.state.profilePage.newPostText;
-    
-        if (text.trim().length > 0) {
-            let newPost = {
-                id: this.state.profilePage.posts.length + 1,
-                nickname: 'Re Senpai',
-                text: text,
-                avatar: 'https://pbs.twimg.com/profile_images/890664645740175360/ATnwBuw_.jpg',
-                like: 0 
-            }
-            this.state.profilePage.posts.unshift(newPost);
-        }
-        
-        this.state.profilePage.newPostText = '';
-        this._subscriber(this.state);
-    },
-    sendMessage() {
-        let text = this.state.dialogsPage.newMessageText;
-        if (text.trim().length > 0) {
-            let newMessage = {
-                id: this.state.dialogsPage.messages.length + 1,
-                message: text
-            }
-            this.state.dialogsPage.messages.push(newMessage);
-        }
-        
-        this.state.dialogsPage.newMessageText = '';
-        this._subscriber(this.state);
-    },
-    updateNewPostText(newText) {
-        this.state.profilePage.newPostText = newText;
-        this._subscriber(this.state);
-    },
-    updateNewMessageText(newText) {
-        this.state.dialogsPage.newMessageText = newText;
-        this._subscriber(this.state);
-    },
-    dispatch(action) {
+    // addPost() {
+    //     let text = this.state.profilePage.newPostText;
 
+    //     if (text.trim().length > 0) {
+    //         let newPost = {
+    //             id: this.state.profilePage.posts.length + 1,
+    //             nickname: 'Re Senpai',
+    //             text: text,
+    //             avatar: 'https://pbs.twimg.com/profile_images/890664645740175360/ATnwBuw_.jpg',
+    //             like: 0
+    //         }
+    //         this.state.profilePage.posts.unshift(newPost);
+    //     }
+
+    //     this.state.profilePage.newPostText = '';
+    //     this._subscriber(this.state);
+    // },
+    // sendMessage() {
+    //     let text = this.state.dialogsPage.newMessageText;
+    //     if (text.trim().length > 0) {
+    //         let newMessage = {
+    //             id: this.state.dialogsPage.messages.length + 1,
+    //             message: text
+    //         }
+    //         this.state.dialogsPage.messages.push(newMessage);
+    //     }
+
+    //     this.state.dialogsPage.newMessageText = '';
+    //     this._subscriber(this.state);
+    // },
+    // updateNewPostText(newText) {
+    //     this.state.profilePage.newPostText = newText;
+    //     this._subscriber(this.state);
+    // },
+    // updateNewMessageText(newText) {
+    //     this.state.dialogsPage.newMessageText = newText;
+    //     this._subscriber(this.state);
+    // },
+    dispatch(action) {
+        // Возможно кейсы тут не катят
+        let text;
+        switch (action.type) {
+            case ADD_POST:
+                text = this.state.profilePage.newPostText;
+
+                if (text.trim().length > 0) {
+                    let newPost = {
+                        id: this.state.profilePage.posts.length + 1,
+                        nickname: 'Re Senpai',
+                        text: text,
+                        avatar: 'https://pbs.twimg.com/profile_images/890664645740175360/ATnwBuw_.jpg',
+                        like: 0
+                    }
+                    this.state.profilePage.posts.unshift(newPost);
+                }
+
+                this.state.profilePage.newPostText = '';
+                this._subscriber(this.state);
+                break;
+            case SEND_MESSAGE:
+                text = this.state.dialogsPage.newMessageText;
+
+                if (text.trim().length > 0) {
+                    let newMessage = {
+                        id: this.state.dialogsPage.messages.length + 1,
+                        message: text
+                    }
+                    this.state.dialogsPage.messages.push(newMessage);
+                }
+
+                this.state.dialogsPage.newMessageText = '';
+                this._subscriber(this.state);
+                break;
+            case UPDATE_NEW_POST_TEXT:
+                this.state.profilePage.newPostText = action.newText;
+                this._subscriber(this.state);
+                break;
+            case UPDATE_NEW_MESSAGE_TEXT:
+                this.state.dialogsPage.newMessageText = action.newText;
+                this._subscriber(this.state);
+                break
+        }
     }
 }
+
+export const addPostActionCreator = () => ({ type: ADD_POST })
+export const updateNewPostTextActionCreator = (text) => ({
+    type: UPDATE_NEW_POST_TEXT,
+    newText: text
+})
+
+export const sendMessageActionCreator = () => ({ type: SEND_MESSAGE })
+export const updateNewMessageTextActionCreator = (text) => ({
+    type: UPDATE_NEW_MESSAGE_TEXT, 
+    newText: text
+})
 
 export default store;
 window.store = store;
