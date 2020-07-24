@@ -6,7 +6,7 @@ import InputMessage from './inputMessage/InputMessage';
 
 const Dialogs = (props) => {
 
-    let dialogElements = props.dialogs
+    let dialogElements = props.state.dialogs
         .map((dialog, i) => <DialogItem
             key={ i }
             name={ dialog.name }
@@ -14,7 +14,7 @@ const Dialogs = (props) => {
             avatar={ dialog.avatar } />
         );
 
-    let messagesElement = props.messages
+    let messagesElement = props.state.messages
         .map((message, i) => <Message
             key={ i }
             message={ message.message } />
@@ -30,9 +30,8 @@ const Dialogs = (props) => {
                     { messagesElement }
                 </div>
                 <InputMessage
-                    newMessageText={ props.newMessageText }
-                    sendMessage={ props.sendMessage }
-                    updateNewMessageText={ props.updateNewMessageText } />
+                    newMessageText={ props.state.newMessageText }
+                    dispatch={ props.dispatch } />
             </div>
         </div>
     );
