@@ -81,6 +81,9 @@ let store = {
     updateNewMessageText(newText) {
         this.state.dialogsPage.newMessageText = newText;
         this._subscriber(this.state);
+    },
+    dispatch(action) {
+
     }
 }
 
