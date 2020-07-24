@@ -1,22 +1,26 @@
 import React from 'react';
 import style from './InputMessage.module.css';
+import { sendMessageActionCreator, updateNewMessageTextActionCreator } from '../../../redux/state';
+
 
 const InputMessage = (props) => {
 
     let newMessageElement = React.createRef();
 
-    let sendMessage = () => {
-        props.sendMessage();
+    let onSendMessage = () => {
+        props.dispatch(sendMessageActionCreator())
     }
 
-    let onMessageChange = () => {
+    let onMessageChange = (event) => {
         let text = newMessageElement.current.value;
-        props.updateNewMessageText(text);
+        console.log(text);
+        console.log(event.target.vaule);
+        props.dispatch(updateNewMessageTextActionCreator(text))
     }
 
     let pressEnter = (event) => {
         if (event.key === 'Enter') {
-            sendMessage();
+            onSendMessage();
         }
     }
 
@@ -32,7 +36,7 @@ const InputMessage = (props) => {
                     ></textarea>
             </div>
             <div>
-                <button onClick={ sendMessage }>Send</button>
+                <button onClick={ onSendMessage }>Send</button>
             </div>
         </div>
     )
