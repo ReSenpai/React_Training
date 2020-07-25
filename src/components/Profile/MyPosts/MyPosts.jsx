@@ -1,7 +1,6 @@
 import React from 'react';
 import style from './MyPosts.module.css';
 import Post from './Post/Post';
-import { addPostActionCreator, updateNewPostTextActionCreator } from '../../../redux/profile_reducer';
 
 
 const MyPosts = (props) => {
@@ -16,18 +15,18 @@ const MyPosts = (props) => {
 
     let newPostElement = React.createRef();
 
-    let addPost = () => {
-        props.dispatch(addPostActionCreator()); 
+    let onAddPost = () => {
+        props.addPost(); 
     }
 
     let onPostChange = (event) => {
         let text = event.target.value;
-        props.dispatch(updateNewPostTextActionCreator(text));
+        props.updateNewPostText(text);
     }
 
     let pressEnter = (event) => {
         if (event.key === 'Enter') {
-            addPost();
+            onAddPost();
         }
     }
 
@@ -44,7 +43,7 @@ const MyPosts = (props) => {
                         onKeyPress={ pressEnter } />
                 </div>
                 <div>
-                    <button onClick={ addPost }>Add Post</button>
+                    <button onClick={ onAddPost }>Add Post</button>
                 </div>
             </div>
             <div className={ style.posts }>
