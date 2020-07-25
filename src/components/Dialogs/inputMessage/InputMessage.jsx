@@ -1,6 +1,6 @@
 import React from 'react';
 import style from './InputMessage.module.css';
-import { sendMessageActionCreator, updateNewMessageTextActionCreator } from '../../../redux/state';
+import { sendMessageActionCreator, updateNewMessageTextActionCreator } from '../../../redux/dialogs_reducer';
 
 
 const InputMessage = (props) => {
@@ -12,9 +12,7 @@ const InputMessage = (props) => {
     }
 
     let onMessageChange = (event) => {
-        let text = newMessageElement.current.value;
-        console.log(text);
-        console.log(event.target.vaule);
+        let text = event.target.value;
         props.dispatch(updateNewMessageTextActionCreator(text))
     }
 
