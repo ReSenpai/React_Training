@@ -13,5 +13,8 @@
     border: 1px solid #ccd6dd;
     max-width: 600px;
     min-height: 60vh;
+    overflow: scroll;
+    max-height: 65vh;
+    word-break: break-word;
 }
 
