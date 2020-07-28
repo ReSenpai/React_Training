@@ -12,9 +12,8 @@
     padding: 20px;
     border: 1px solid #ccd6dd;
     max-width: 600px;
-    min-height: 60vh;
-    overflow: scroll;
-    max-height: 65vh;
+    height: 60vh;
+    overflow: auto;
     word-break: break-word;
 }
 
@@ -26,7 +25,7 @@
 }
 
 .textarea {
-    width: 100%;
+    width: 97%;
     min-height: 100px;
     padding: 10px;
     background-color: rgb(231, 229, 229);
