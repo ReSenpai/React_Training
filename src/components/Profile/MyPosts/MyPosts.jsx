@@ -14,7 +14,7 @@ const MyPosts = (props) => {
     );
 
     let newPostElement = React.createRef();
-
+    
     let onAddPost = () => {
         props.addPost(); 
     }
@@ -29,6 +29,7 @@ const MyPosts = (props) => {
             onAddPost();
         }
     }
+
 
     return (
         <div>
