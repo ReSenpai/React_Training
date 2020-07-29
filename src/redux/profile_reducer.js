@@ -15,9 +15,8 @@ let initialState = {
 const profileReducer = (state = initialState, action) => {
 
     switch (action.type) {
-        case ADD_POST:
+        case ADD_POST: {
             let text = state.newPostText;
-
             if (text.trim().length > 0) {
                 let newPost = {
                     id: state.posts.length + 1,
@@ -26,14 +25,24 @@ const profileReducer = (state = initialState, action) => {
                     avatar: 'https://pbs.twimg.com/profile_images/890664645740175360/ATnwBuw_.jpg',
                     like: 0
                 }
-                state.posts.unshift(newPost);
+                return {
+                    ...state,
+                    newPostText: '',
+                    posts: [newPost, ...state.posts]
+                }
+            } else {
+                return {
+                    ...state,
+                    newPostText: ''
+                }
             }
-
-            state.newPostText = '';
-            break;
-        case UPDATE_NEW_POST_TEXT:
-            state.newPostText = action.newText;
-            break;
+        }
+        case UPDATE_NEW_POST_TEXT: {
+            return {
+                ...state,
+                newPostText: action.newText
+            }
+        }
     }
     return state;
 }
