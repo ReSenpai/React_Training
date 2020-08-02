@@ -25,10 +25,30 @@
 .button {
     width: 88px;
     height: 32px;
-    border: 1px solid orange;
-    border-radius: 50px;
+    padding: 0;
+    border: none;
+    background: none;
+    border-radius: 5px;
+    margin: 5px;
+    transition: 0.2s;
 }
 
+.button:hover {
+    background-color: rgba(226, 223, 223);
+}
+
+.button:active {
+    transform: translateY(2px);
+    transition: 0.2s;
+    background-color: rgb(146, 125, 125);
+}
+
+.count {
+    display: inline-block;
+    text-align: center;
+    width: 50px;
+    height: 30px;
+}
 
 .image {
     width: 50px;
