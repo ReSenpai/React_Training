@@ -3,8 +3,8 @@
     width: 75vw;
     height: 60px;
     grid-area: h;
-    background-color: #ffffff;
-    border-bottom: 1px solid #ccd6dd;
+    background-color: var(--background);
+    border-bottom: 1px solid var(--border);
 }
 
 .header img {
