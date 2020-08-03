@@ -1,12 +1,12 @@
 .nav {
     position: fixed;
     grid-area: n;
-    background-color: #ffffff;
+    background-color: var(--background);
     margin: 118px 0 0 14px;
 }
 
 .item {
-    color: black;
+    color: var(--text);
 }
 
 .item a {
@@ -14,11 +14,11 @@
 }
 
 .item a:hover {
-    color:gold;
+    color: var(--links);
 }
 
 .active {
-    color: gold;
+    color: var(--links);
 }
 
 .friends {
