@@ -11,7 +11,7 @@
     display: flex;
     width: 350px;
     height: 75px;
-    border-bottom: 1px solid #ccd6dd;
+    border-bottom: 1px solid var(--border);
     align-items: center;
     justify-content: space-between;
     margin-top: 10px;
@@ -25,16 +25,19 @@
 .button {
     width: 88px;
     height: 32px;
+    color: var(--links);
+    font-size: inherit;
     padding: 0;
-    border: none;
+    border: 1px solid var(--links);
     background: none;
-    border-radius: 5px;
+    border-radius: 9999px;
     margin: 5px;
-    transition: 0.2s;
+    cursor: pointer;
+    transition-duration: 0.2s;
 }
 
 .button:hover {
-    background-color: rgba(226, 223, 223);
+    background-color: var(--orangeHover);
 }
 
 .button:active {
