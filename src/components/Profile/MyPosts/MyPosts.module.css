@@ -1,7 +1,8 @@
 .textarea {
     width: 700px;
     height: 150px;
-    background-color: #ccd6dd;
+    background-color: rgba(110, 118, 125, 0.4);
+    color: var(--text);
     padding: 15px;
     font-size: 20px;
 }
