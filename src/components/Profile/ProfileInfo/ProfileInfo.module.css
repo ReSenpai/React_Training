@@ -1,10 +1,22 @@
 .images {
     width: 900px;
+    height: 200px;
+    object-fit: cover;
     border-radius: 10px;
-    border: 1px solid #ccd6dd;
-
 }
 
 .img__wrapper {
-    padding: 20px;
+    margin-bottom: 10px;
+}
+
+.user_photo__wrapper {
+    display: flex;
+    flex-direction: column;
+}
+
+.user_photo {
+    width: 200px;
+    height: 200px;
+    object-fit: cover;
+    border-radius: 5px;
 }
