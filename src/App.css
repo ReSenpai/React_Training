@@ -2,8 +2,12 @@
  * Vars
 */
 :root {
-  --background: #363537;
-  --text: '#363537';
+  --background: rgb(21, 32, 43);
+  --border: rgb(56, 68, 77);
+  --text: rgb(255, 255, 255);
+  --dimText: rgb(136, 153, 166);
+  --links: rgb(244, 93, 34);
+  --orangeHover: rgba(244, 93, 34, 0.1);
 }
 /*
  * Null style
@@ -18,13 +22,20 @@ a {
   text-decoration: none;
 }
 
-button {
-  outline:0;
+a:visited {
+  color: var(--text);
 }
 
+button,
+textarea {
+  outline:0;
+}
+/*
+ * App style
+*/
 body {
-  background-color: #ffffff;
-  color: black;
+  background-color: var(--background);
+  color: var(--text);
   font-family: monospace;
   font-size: 17px;
 }
@@ -43,6 +54,6 @@ body {
 
 .app-wrapper-content {
   grid-area: c;
-  background-color: #ffffff;
-  border-left: 1px solid #ccd6dd;
+  background-color: var(--background);
+  border-left: 1px solid var(--border);
 }
