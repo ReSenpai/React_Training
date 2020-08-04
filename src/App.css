@@ -8,6 +8,7 @@
   --dimText: rgb(136, 153, 166);
   --links: rgb(244, 93, 34);
   --orangeHover: rgba(244, 93, 34, 0.1);
+  --greyHover: rgba(255, 255, 255, 0.03);
 }
 /*
  * Null style
