@@ -6,19 +6,52 @@
 }
 
 .item {
+    display: flex;
+    align-items: center;
     color: var(--text);
+    height: 55px;
+    margin: 5px;
+    font-size: 24px;
+    border-radius: 9999px;
+    padding-left: 10px;
+    transition-duration: 0.15s;
+}
+
+.item:hover {
+    background-color: var(--orangeHover);
 }
 
 .item a {
     text-decoration: none;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    transition-duration: 0.1s
 }
 
-.item a:hover {
+.item:hover {
     color: var(--links);
 }
 
-.active {
+.icons {
+    margin-right: 10px;
+    transition-duration: 0.1s
+}
+
+.item:hover > svg {
+    fill: var(--links);
+}
+
+.item svg:hover {
+    fill: var(--links);
+}
+
+.active > span {
     color: var(--links);
+}
+
+.active > svg {
+    fill: var(--links);
 }
 
 .friends {
