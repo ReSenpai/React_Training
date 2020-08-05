@@ -46,6 +46,11 @@
     background-color: rgb(146, 125, 125);
 }
 
+.button:disabled {
+    border-color: var(--border);
+    color: var(--dimText);
+}
+
 .count {
     display: inline-block;
     text-align: center;
