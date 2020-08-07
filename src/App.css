@@ -57,4 +57,5 @@ body {
   grid-area: c;
   background-color: var(--background);
   border-left: 1px solid var(--border);
+  margin-left: 82px;
 }

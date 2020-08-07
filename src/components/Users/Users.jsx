@@ -11,9 +11,9 @@ const Users = (props) => {
         <div className={ styles.users__wrapper }>
             <div>
                 <span className={styles.count}>{ 
-                    props.currentPage - 1 ?
-                    props.currentPage - 1 :
-                    'Start' }</span>
+                    props.currentPage - 1
+                    ? props.currentPage - 1
+                    : 'Start' }</span>
                 <button 
                     className={ styles.button }
                     onClick={ () => props.onPageChanged(props.currentPage -1 ) }
@@ -37,17 +37,15 @@ const Users = (props) => {
                             <NavLink to={`/profile/${user.id}`}>
                                 <img
                                     className={ styles.image } 
-                                    src={ 
-                                        user.photos.small ? 
-                                        user.photos.small :
-                                        userPhoto
-                                    } 
+                                    src={ user.photos.small
+                                            ? user.photos.small
+                                            : userPhoto } 
                                     alt="user photo"/>
                             </NavLink>
                         </div>
                         <div className={ styles.username__wrapper }>
                             <span>{ user.name }</span>
-                            <span>{ user.name }</span>
+                            <span>{ user.status }</span>
                         </div>
                         <div className={ styles.button__wrapper }>
                             { user.followed

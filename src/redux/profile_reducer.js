@@ -64,24 +64,20 @@ export const updateNewPostText = (text) => ({
 })
 export const setUserProfile = (profile) => ({ type: SET_USER_PROFILE, profile })
 
-export const getUserProfile = (userId) => { 
-    
-    return (dispatch) => {
-        
-        if (!userId) {
-            profileAPI.authUser()
-            .then(data => {
-                userId = data.data.id;
-            })
-            .then(() => {
-                profileAPI.getUserProfile(userId)
-                .then(data => dispatch(setUserProfile(data)));
-            })
-        } else {
+export const getUserProfile = (userId) => (dispatch) => {    
+    if (!userId) {
+        profileAPI.authMe()
+        .then(data => {
+            userId = data.data.id;
+        })
+        .then(() => {
             profileAPI.getUserProfile(userId)
             .then(data => dispatch(setUserProfile(data)));
-        } 
-    }
+        })
+    } else {
+        profileAPI.getUserProfile(userId)
+        .then(data => dispatch(setUserProfile(data)));
+    } 
 }
 
 export default profileReducer;
