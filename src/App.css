@@ -28,7 +28,8 @@ a:visited {
 }
 
 button,
-textarea {
+textarea,
+input {
   outline:0;
 }
 /*

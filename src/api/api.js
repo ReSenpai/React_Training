@@ -8,6 +8,10 @@ const instance = axios.create({
     }
 });
 
+const jikan = axios.create({
+    baseURL: 'https://api.jikan.moe/v3/'
+})
+
 export const usersAPI = {
     getUsers (currentPage = 1, pageSize = 8) {
         return instance.get(`/users?page=${currentPage}&count=${pageSize}`)
@@ -37,6 +41,13 @@ export const profileAPI = {
 export const headerAPI = {
     authMe () {
         return instance.get(`auth/me`)
+        .then(response => response.data)
+    }
+}
+
+export const newsAPI = {
+    search (name) {
+        return jikan.get(`search/anime?q=${name}`)
         .then(response => response.data)
     }
 }
