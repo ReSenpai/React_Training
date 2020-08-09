@@ -1,15 +1,23 @@
 import React from 'react';
-import style from './News.module.css'
 import { newsAPI } from '../../api/api';
+import News from './News';
+import { connect } from 'react-redux';
+import { updateNewSearchQuery } from '../../redux/news_reducer';
 
-const News = (props) => {
-    newsAPI.search()
-    .then(data => console.log(data))
-    return (
-        <div>
-            News
-        </div>
-    )
+class NewsContiner extends React.Component {
+    render () {
+        return <News {...this.props} />
+    }
 }
 
-export default News;
+const mapStateToProps = (state) => {
+    return {
+        newSearchQuery: state.newsPage.newSearchQuery
+    }
+}
+
+
+
+export default connect(mapStateToProps, {
+    updateNewSearchQuery
+})(NewsContiner);

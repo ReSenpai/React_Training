@@ -2,7 +2,6 @@ import React from 'react';
 import { HashRouter, Route } from 'react-router-dom';
 import './App.css';
 import Navbar from './components/Navbar/Navbar';
-import News from './components/News/News';
 import Music from './components/Music/Music';
 import DialogsContainer from './components/Dialogs/DialogsContainer';
 import UsersContainer from './components/Users/UsersContainer';
@@ -10,6 +9,7 @@ import ProfileContainer from './components/Profile/ProfileContainer';
 import HeaderContainer from './components/Header/HeaderContainer';
 import Login from './components/Login/Login';
 import SettingContainer from './components/Setting/SettingContainer';
+import NewsContiner from './components/News/NewsContainer';
 
 const App = (props) => {
   return (
@@ -25,7 +25,7 @@ const App = (props) => {
             render={ () => <DialogsContainer />} />
 
           <Route path='/news'
-            render={ () => <News />} />
+            render={ () => <NewsContiner />} />
 
           <Route path='/music'
             render={ () => <Music />} />
