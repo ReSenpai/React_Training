@@ -11,6 +11,7 @@ const DialogItem = (props) => {
                 to={`/messages/${props.id}`}>
                 <img 
                 src={props.avatar}
+                alt='User avatar'
                 className={style.avatar}></img>
                 { props.name }
             </NavLink>
