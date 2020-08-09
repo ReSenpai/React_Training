@@ -36,7 +36,8 @@ const MyPosts = (props) => {
             <h3>My posts</h3>
             <div>
                 <div>
-                    <textarea
+                    <input
+                        type='text'
                         className={ style.textarea }
                         ref={ newPostElement }
                         value={ props.newPostText }

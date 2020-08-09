@@ -3,7 +3,7 @@ const UPDATE_NEW_SEARCH_QUERY = 'UPDATE_NEW_SEARCH_QUERY';
 
 let initialState = {
     searchResult: [],
-    newSearchQuery: 'test',
+    newSearchQuery: '',
     isFetching: true
 };
 
