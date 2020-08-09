@@ -14,23 +14,30 @@ const ProfileInfo = (props) => {
             <div className={ style.img__wrapper} >
                 <img 
                     className={ style.images } 
-                    src='https://i.pinimg.com/originals/6f/2d/34/6f2d34fe6c8746c56c14fbc55308ef99.jpg' alt='anime background'></img>
+                    src='https://i.pinimg.com/originals/6f/2d/34/6f2d34fe6c8746c56c14fbc55308ef99.jpg' 
+                    alt='anime background'>
+                </img>
             </div>
             <div className={ style.user_photo__wrapper }>
-                <ProfileStatus status={ 'Hello hello' } />
+                <ProfileStatus 
+                    status={ props.status }
+                    updateUserStatus={ props.updateUserStatus } />
                 <img
                     className={ style.user_photo } 
-                    src={ props.profile.photos.large
+                    src={ 
+                        props.profile.photos.large
                             ? props.profile.photos.large
-                            : 'https://miro.medium.com/max/720/1*W35QUSvGpcLuxPo3SRTH4w.png' } 
+                            : 'https://miro.medium.com/max/720/1*W35QUSvGpcLuxPo3SRTH4w.png' 
+                        } 
                     alt="User photo"/>
                 <div>{ props.profile.fullName }</div>
                 <div>{ props.profile.aboutMe }</div>
                 <div>{ 
-                    props.profile.lookingForAJob ? 
-                    props.profile.lookingForAJobDescription : 
-                    'Не ищу работу' 
-                }</div>
+                    props.profile.lookingForAJob
+                        ? props.profile.lookingForAJobDescription
+                        : 'Не ищу работу' 
+                    }
+                </div>
                 <SocialMedia />
             </div>
         </div>
