@@ -1,4 +1,5 @@
 import React from 'react';
+import { ReactComponent as MeditationIcon } from '../../../../assets/icons/self_improvement.svg' 
 import styles from './ProfileStatus.module.css';
 
 
@@ -28,12 +29,21 @@ class ProfileStatus extends React.Component {
         });
     }
 
+    componentDidUpdate (prevProps, prevState) {
+        if (prevProps.status !== this.props.status) {
+            this.setState({
+                status: this.props.status
+            })
+        }
+    }
 
     render () {
         return (
-            <div>
+            <div className={ styles.profileStatusContainer }>
+                Status: 
+                <MeditationIcon />
                 { !this.state.editMode &&
-                    <div>
+                    <div className={ styles.SpanWrapper}>
                         <span 
                             onDoubleClick={ this.activateEditMode }>
                             { this.state.status || 'Поделитесь своими мыслями :3' }

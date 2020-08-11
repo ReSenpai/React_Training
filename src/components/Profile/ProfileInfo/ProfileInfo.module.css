@@ -1,3 +1,7 @@
+.user_info_container {
+    display: flex;
+}
+
 .images {
     width: 900px;
     height: 200px;

@@ -1,0 +1,12 @@
+
+.profileStatusContainer {
+    display: flex;
+}
+
+.SpanWrapper {
+    padding: 5px;
+}
+
+.SpanWrapper:hover {
+    background-color: var(--greyHover);
+}

@@ -18,27 +18,31 @@ const ProfileInfo = (props) => {
                     alt='anime background'>
                 </img>
             </div>
-            <div className={ style.user_photo__wrapper }>
-                <ProfileStatus 
+            <div className={ style.user_info_container }>
+                <div>
+                    <img
+                        className={ style.user_photo } 
+                        src={ 
+                            props.profile.photos.large
+                                ? props.profile.photos.large
+                                : 'https://miro.medium.com/max/720/1*W35QUSvGpcLuxPo3SRTH4w.png' 
+                            } 
+                        alt="User photo"/>
+                    <ProfileStatus 
                     status={ props.status }
                     updateUserStatus={ props.updateUserStatus } />
-                <img
-                    className={ style.user_photo } 
-                    src={ 
-                        props.profile.photos.large
-                            ? props.profile.photos.large
-                            : 'https://miro.medium.com/max/720/1*W35QUSvGpcLuxPo3SRTH4w.png' 
-                        } 
-                    alt="User photo"/>
-                <div>{ props.profile.fullName }</div>
-                <div>{ props.profile.aboutMe }</div>
-                <div>{ 
-                    props.profile.lookingForAJob
-                        ? props.profile.lookingForAJobDescription
-                        : 'Не ищу работу' 
-                    }
                 </div>
-                <SocialMedia />
+                <div>
+                    <h2>{ props.profile.fullName }</h2>
+                    <div>{ props.profile.aboutMe }</div>
+                    <div>{ 
+                        props.profile.lookingForAJob
+                            ? props.profile.lookingForAJobDescription
+                            : 'Не ищу работу' 
+                        }
+                    </div>
+                    <SocialMedia />
+                </div>
             </div>
         </div>
 
