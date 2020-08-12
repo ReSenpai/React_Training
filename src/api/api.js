@@ -23,6 +23,10 @@ export const authAPI = {
             password,
             rememberMe
         }).then(response => response.data.data.userId)
+    },
+    deleteAuth () {
+        return instance.delete('/auth/login')
+        .then(response => response.data.resultCode)
     }
 }
 

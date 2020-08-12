@@ -43,7 +43,6 @@ const LoginForm = (props) => {
 const Login = (props) => {
 
     const onSubmit = (data) => {
-        console.log(data)
         props.sendAuthData(data);
     }
 
