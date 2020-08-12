@@ -12,6 +12,20 @@ const jikan = axios.create({
     baseURL: 'https://api.jikan.moe/v3/'
 })
 
+export const authAPI = {
+    authMe () {
+        return instance.get(`auth/me`)
+        .then(response => response.data);
+    },
+    getAuthorization (email, password, rememberMe) {
+        return instance.post('/auth/login', {
+            email,
+            password,
+            rememberMe
+        }).then(response => response.data.data.userId)
+    }
+}
+
 export const usersAPI = {
     getUsers (currentPage = 1, pageSize = 8) {
         return instance.get(`/users?page=${currentPage}&count=${pageSize}`)
@@ -30,32 +44,32 @@ export const usersAPI = {
 export const profileAPI = {
     getUserProfile (userId) {
         return instance.get(`profile/${userId}`)
-        .then(response => response.data )
+        .then(response => response.data );
     },
     authMe () {
-        return instance.get(`auth/me`)
-        .then(response => response.data)
+        console.warn('In future updates, this method will be removed. Please use a similar method from "authAPI".');
+        return authAPI.authMe();   
     },
     getStatus(userId) {
-        return instance.get(`profile/status/${userId}`)
+        return instance.get(`profile/status/${userId}`);
     },
     updateStatus(status) {
         return instance.put('profile/status', {
             status: status
-        })
+        });
     }
 }
 
 export const headerAPI = {
     authMe () {
-        return instance.get(`auth/me`)
-        .then(response => response.data)
+        console.warn('In future updates, this method will be removed. Please use a similar method from "authAPI".');
+        return authAPI.authMe();  
     }
 }
 
 export const newsAPI = {
     search (name) {
         return jikan.get(`search/anime?q=${name}`)
-        .then(response => response.data)
+        .then(response => response.data);
     }
 }
