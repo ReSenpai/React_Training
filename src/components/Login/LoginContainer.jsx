@@ -2,13 +2,13 @@ import React from 'react';
 import Login from './Login';
 import { compose } from 'redux';
 import { connect } from 'react-redux';
-import { getAuthorization } from '../../redux/auth_reducer';
+import { login } from '../../redux/auth_reducer';
 import { Redirect } from 'react-router-dom';
 
 class LoginContainer extends React.Component {
 
     sendAuthData = (data) => {
-        this.props.getAuthorization(data);
+        this.props.login(data);
     }
 
     render () {
@@ -28,6 +28,6 @@ const mapStateToProps = (state) => {
 
 export default compose(
     connect(mapStateToProps,{
-        getAuthorization
+        login
     })
 )(LoginContainer);
