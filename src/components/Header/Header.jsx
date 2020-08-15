@@ -11,8 +11,9 @@ const Header = (props) => {
             </img>
             <div className={ styles.loginBlock }>
                 { 
-                    props.isAuth  ||
-                    <NavLink to={'/login'}>Login</NavLink>
+                    props.isAuth
+                    ? <NavLink to={'/login'}>Logout</NavLink>
+                    : <NavLink to={'/login'}>Login</NavLink>
                 }
             </div>
         </header>
