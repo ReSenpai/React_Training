@@ -22,7 +22,6 @@ const authReducer = (state = initialState, action) => {
             }
         }
         case SET_USER_ID: {
-            console.log('set User id')
             return {
                 ...state,
                 userId: action.userId,
