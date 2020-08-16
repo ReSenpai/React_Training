@@ -1,6 +1,7 @@
 import React from 'react';
 import style from './MyPosts.module.css';
 import Post from './Post/Post';
+import { Form, Field } from 'react-final-form'
 
 
 const MyPosts = (props) => {
@@ -12,41 +13,24 @@ const MyPosts = (props) => {
         src={ post.avatar }
         like={ post.like } />
     );
-
-    let newPostElement = React.createRef();
     
-    let onAddPost = () => {
-        props.addPost(); 
+    let onAddPost = (values) => {
+        props.addPost(values.newPostText);
     }
 
-    let onPostChange = (event) => {
-        let text = event.target.value;
-        props.updateNewPostText(text);
-    }
 
-    let pressEnter = (event) => {
-        if (event.key === 'Enter') {
-            onAddPost();
-        }
-    }
+    // let pressEnter = (event) => {
+    //     if (event.key === 'Enter') {
+    //         onAddPost();
+    //     }
+    // }
 
 
     return (
         <div>
             <h3>My posts</h3>
             <div>
-                <div>
-                    <input
-                        type='text'
-                        className={ style.textarea }
-                        ref={ newPostElement }
-                        value={ props.newPostText }
-                        onChange={ onPostChange }
-                        onKeyPress={ pressEnter } />
-                </div>
-                <div>
-                    <button onClick={ onAddPost }>Add Post</button>
-                </div>
+                <AddNewPostForm onSubmit={ onAddPost } />
             </div>
             <div className={ style.posts }>
                 { postsElement }
@@ -54,5 +38,28 @@ const MyPosts = (props) => {
         </div>
     );
 }
+
+const AddNewPostForm = (props) => {
+    return (
+        <Form
+            onSubmit={ props.onSubmit }
+            render={({ handleSubmit }) => (
+                <form onSubmit={ handleSubmit }>
+                   <div>
+                    <Field
+                        component='textarea'
+                        name='newPostText'
+                        placeholder='Add post...' />
+                    </div>
+                    <div>
+                        <button>Add Post</button>
+                    </div>
+                </form>
+            )}
+        />
+    )
+}
+
+
 
 export default MyPosts;

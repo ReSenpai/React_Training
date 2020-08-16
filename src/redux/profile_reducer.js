@@ -1,7 +1,6 @@
 import { profileAPI } from "../api/api";
 
 const ADD_POST = 'ADD-POST';
-const UPDATE_NEW_POST_TEXT = 'UPDATE-NEW-POST-TEXT';
 const SET_USER_PROFILE = 'SET_USER_PROFILE';
 const SET_STATUS = 'SET_STATUS';
 
@@ -13,7 +12,6 @@ let initialState = {
         { id: 4, nickname: 'Human', text: 'Why not :)', avatar: 'https://pbs.twimg.com/profile_images/1082020318523412480/E87sUSUc_400x400.jpg', like: 1 },
         { id: 5, nickname: 'Solo', text: 'Olivia', avatar: 'https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcRTB1XNd7zac9ZAJs3LHlgHbGdhVsjyohiqHQ&usqp=CAU', like: 4 }
     ],
-    newPostText: '',
     profile: null,
     status: ''
 };
@@ -22,7 +20,7 @@ const profileReducer = (state = initialState, action) => {
 
     switch (action.type) {
         case ADD_POST: {
-            let text = state.newPostText;
+            let text = action.newPostText;
             if (text.trim().length > 0) {
                 let newPost = {
                     id: state.posts.length + 1,
@@ -33,20 +31,12 @@ const profileReducer = (state = initialState, action) => {
                 }
                 return {
                     ...state,
-                    newPostText: '',
                     posts: [newPost, ...state.posts]
                 }
             } else {
                 return {
-                    ...state,
-                    newPostText: ''
+                    ...state
                 }
-            }
-        }
-        case UPDATE_NEW_POST_TEXT: {
-            return {
-                ...state,
-                newPostText: action.newText
             }
         }
         case SET_USER_PROFILE: {
@@ -66,11 +56,8 @@ const profileReducer = (state = initialState, action) => {
     }
 }
 
-export const addPost = () => ({ type: ADD_POST })
-export const updateNewPostText = (text) => ({
-    type: UPDATE_NEW_POST_TEXT,
-    newText: text
-})
+export const addPost = (newPostText) => ({ type: ADD_POST, newPostText })
+
 export const setUserProfile = (profile) => ({ type: SET_USER_PROFILE, profile })
 export const setStatus = (status) => ({ type: SET_STATUS, status })
 

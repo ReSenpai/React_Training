@@ -2,6 +2,7 @@ import React from 'react';
 import style from './Dialogs.module.css';
 import DialogItem from './DialogItem/DialogItem';
 import Message from './Message/Message';
+import { Form, Field } from 'react-final-form'
 
 const Dialogs = (props) => {
 
@@ -20,15 +21,8 @@ const Dialogs = (props) => {
             type={ message.type } />
     );
 
-    let newMessageElement = React.createRef();
-
-    let onSendMessage = () => {
-        props.sendMessage();
-    }
-
-    let onMessageChange = (event) => {
-        let text = event.target.value;
-        props.messageChange(text);
+    let onSendMessage = (values) => {
+        props.sendMessage(values.newMessageBody);
     }
 
     let pressEnter = (event) => {
@@ -47,22 +41,33 @@ const Dialogs = (props) => {
                     { messagesElement }
                 </div>
                 <div className={ style.textarea__wrapper }>
-                    <div>
-                        <textarea
-                            className={ style.textarea }
-                            ref={ newMessageElement } 
-                            value={ props.state.newMessageText }
-                            onChange={ onMessageChange }
-                            onKeyPress={ pressEnter }
-                            ></textarea>
-                    </div>
-                    <div>
-                        <button onClick={ onSendMessage }>Send</button>
-                    </div>
+                    <AddMessageForm onSubmit={ onSendMessage } />
                 </div>
             </div>
         </div>
     );
+}
+
+const AddMessageForm = (props) => {
+    return (
+        <Form
+            onSubmit={ props.onSubmit }
+            render={({ handleSubmit }) => (
+                <form onSubmit={ handleSubmit }>
+                   <div>
+                        <Field 
+                            component='textarea'
+                            name='newMessageBody'
+                            placeholder='Message...'
+                        />
+                    </div>
+                    <div>
+                        <button>Send</button>
+                    </div>
+                </form>
+            )}
+        />
+    )
 }
 
 export default Dialogs;
