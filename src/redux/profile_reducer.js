@@ -21,22 +21,16 @@ const profileReducer = (state = initialState, action) => {
     switch (action.type) {
         case ADD_POST: {
             let text = action.newPostText;
-            if (text.trim().length > 0) {
-                let newPost = {
-                    id: state.posts.length + 1,
-                    nickname: 'Re Senpai',
-                    text: text,
-                    avatar: 'https://pbs.twimg.com/profile_images/890664645740175360/ATnwBuw_.jpg',
-                    like: 0
-                }
-                return {
-                    ...state,
-                    posts: [newPost, ...state.posts]
-                }
-            } else {
-                return {
-                    ...state
-                }
+            let newPost = {
+                id: state.posts.length + 1,
+                nickname: 'Re Senpai',
+                text: text,
+                avatar: 'https://pbs.twimg.com/profile_images/890664645740175360/ATnwBuw_.jpg',
+                like: 0
+            }
+            return {
+                ...state,
+                posts: [newPost, ...state.posts]
             }
         }
         case SET_USER_PROFILE: {
