@@ -7,21 +7,20 @@ import { Redirect } from 'react-router-dom';
 
 class LoginContainer extends React.Component {
 
-    sendAuthData = (data) => {
+    login = (data) => {
         this.props.login(data);
     }
 
     render () {
-        if (this.props.isAuth) return <Redirect to={`profile`} />
+        if (this.props.isAuth) return <Redirect to='/profile' />
         return (
-            <Login sendAuthData={ this.sendAuthData } />
+            <Login login={ this.login } />
         )
     }
 }
 
 const mapStateToProps = (state) => {
     return {
-        userId: state.auth.userId,
         isAuth: state.auth.isAuth
     }
 }

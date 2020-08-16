@@ -1,7 +1,6 @@
 import { headerAPI, authAPI } from "../api/api";
 
 const SET_USER_DATA = 'SET_USER_DATA';
-const SET_USER_ID = 'SET_USER_ID';
 
 let initialState = {
     userId: null,
@@ -17,15 +16,7 @@ const authReducer = (state = initialState, action) => {
         case SET_USER_DATA: {
             return {
                 ...state,
-                ...action.data,
-                isAuth: true
-            }
-        }
-        case SET_USER_ID: {
-            return {
-                ...state,
-                userId: action.userId,
-                isAuth: true
+                ...action.payload
             }
         }
         default:
@@ -33,27 +24,36 @@ const authReducer = (state = initialState, action) => {
     }  
 }
 
-export const setAuthUserData= (userId, email, login) => ({ type: SET_USER_DATA, data: {
-    userId, email, login
+export const setAuthUserData= (userId, email, login, isAuth) => ({ type: SET_USER_DATA, payload: {
+    userId, email, login, isAuth
 } })
-export const setAuthUserId= (userId,) => ({ type: SET_USER_ID, userId })
 
 export const getAuthUserData = () => (dispatch) => {
     headerAPI.authMe()
     .then(data => {
-        if (data.resultCode === 0) {
-            let {id, email, login} = data.data;
-            dispatch(setAuthUserData(id, email, login));
-        }
+        let {id, email, login} = data.data;
+        data.resultCode === 0
+        ? dispatch(setAuthUserData(id, email, login, true))
+        : console.log(...data.messages)
     });
 }
 
-export const login = (data) => (dispatch) => {
-    let {email, password, rememberMe} = data;
+export const login = ({email, password, rememberMe}) => (dispatch) => {
     authAPI.login(email, password, rememberMe)
-    .then(userId => {
-        dispatch(setAuthUserId(userId));
-    })
+    .then(data => {
+        data.resultCode === 0 
+        ? dispatch(getAuthUserData())
+        : console.log(...data.messages)
+    });
+}
+
+export const logout = () => (dispatch) => {
+    authAPI.logout()
+    .then(data => {
+        data.resultCode === 0 
+        ? dispatch(setAuthUserData(null, null, null, false))
+        : console.log(...data.messages)
+    });
 }
 
 export default authReducer;

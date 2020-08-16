@@ -3,6 +3,20 @@ import { Form, Field } from 'react-final-form'
 import { Input } from '../common/FormsControls/FormsControls';
 import { requiredField } from '../../utils/validators/validators';
 
+const Login = (props) => {
+
+    const onSubmit = (data) => {
+        props.login(data);
+    }
+
+    return (
+        <div>
+            <h1>Login</h1>
+            <LoginForm onSubmit={onSubmit} />
+        </div>
+    );
+}
+
 const LoginForm = (props) => {
     return (
         <Form
@@ -45,20 +59,6 @@ const LoginForm = (props) => {
             )}
         />
     )
-}
-
-const Login = (props) => {
-
-    const onSubmit = (data) => {
-        props.sendAuthData(data);
-    }
-
-    return (
-        <div>
-            <h1>Login</h1>
-            <LoginForm onSubmit={onSubmit} />
-        </div>
-    );
 }
 
 export default Login;
