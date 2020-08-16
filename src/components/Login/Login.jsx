@@ -1,5 +1,7 @@
 import React from 'react';
 import { Form, Field } from 'react-final-form'
+import { Input } from '../common/FormsControls/FormsControls';
+import { requiredField } from '../../utils/validators/validators';
 
 const LoginForm = (props) => {
     return (
@@ -10,24 +12,29 @@ const LoginForm = (props) => {
                     <div>
                         <Field
                         name="email"
-                        component="input"
+                        component={ Input }
                         type="email"
                         placeholder="Login"
                         required
+                        validate={ requiredField }
                         />
                     </div>
                     <div>
                         <Field
                         name="password"
-                        component="input"
+                        component={ Input }
                         type="password"
                         placeholder="Password"
                         required
+                        validate={ requiredField }
                         />
                     </div>
                     <div>
                         <label>Remember Me</label>
-                        <Field name="rememberMe" component="input" type="checkbox" />
+                        <Field 
+                        name="rememberMe" 
+                        component={ Input } 
+                        type="checkbox" />
                     </div>
                     <div>
                         <button type="submit" disabled={submitting || pristine}>

@@ -3,6 +3,8 @@ import style from './Dialogs.module.css';
 import DialogItem from './DialogItem/DialogItem';
 import Message from './Message/Message';
 import { Form, Field } from 'react-final-form'
+import { Textarea } from '../common/FormsControls/FormsControls';
+import { composeValidators, requiredField, maxLengthCreator } from '../../utils/validators/validators';
 
 const Dialogs = (props) => {
 
@@ -56,9 +58,10 @@ const AddMessageForm = (props) => {
                 <form onSubmit={ handleSubmit }>
                    <div>
                         <Field 
-                            component='textarea'
+                            component={ Textarea }
                             name='newMessageBody'
                             placeholder='Message...'
+                            validate={composeValidators(requiredField, maxLengthCreator(100))}
                         />
                     </div>
                     <div>
