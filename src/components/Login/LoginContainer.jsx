@@ -7,9 +7,7 @@ import { Redirect } from 'react-router-dom';
 
 class LoginContainer extends React.Component {
 
-    login = (data) => {
-        this.props.login(data);
-    }
+    login = (data) => this.props.login(data);
 
     render () {
         if (this.props.isAuth) return <Redirect to='/profile' />

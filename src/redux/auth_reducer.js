@@ -1,4 +1,5 @@
 import { headerAPI, authAPI } from "../api/api";
+import { FORM_ERROR } from 'final-form'
 
 const SET_USER_DATA = 'SET_USER_DATA';
 const SET_CAPTCHA = 'SET_CAPTCHA';
@@ -54,15 +55,15 @@ export const getCaptcha = () => (dispatch) => {
     });
 }
 
-export const login = ({email, password, rememberMe, captcha}) => (dispatch) => {
-    authAPI.login(email, password, rememberMe, captcha)
-    .then(data => {
-        debugger
-        data.resultCode === 0 
-        ? dispatch(getAuthUserData())
-        : console.log(...data.messages);
+export const login = ({email, password, rememberMe, captcha}) => async (dispatch) => {
+    const data = await authAPI.login(email, password, rememberMe, captcha);
+    if (data.resultCode === 0) {
+        dispatch(getAuthUserData())
+    } else {
         data.resultCode === 10 && dispatch(getCaptcha());
-    });
+        console.log(data.messages[0])
+        return { [FORM_ERROR]: data.messages[0]}
+    }
 }
 
 export const logout = () => (dispatch) => {

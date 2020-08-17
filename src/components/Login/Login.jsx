@@ -5,10 +5,7 @@ import { requiredField } from '../../utils/validators/validators';
 
 const Login = (props) => {
 
-    const onSubmit = (data) => {
-        console.log(data)
-        props.login(data);
-    }
+    const onSubmit = (data) => props.login(data);
 
     return (
         <div>
@@ -22,7 +19,7 @@ const LoginForm = (props) => {
     return (
         <Form
             onSubmit={props.onSubmit}
-            render={({ handleSubmit, submitting, pristine }) => (
+            render={({ handleSubmit, submitting, pristine, submitError }) => (
                 <form onSubmit={handleSubmit}>
                     <div>
                         <Field
@@ -64,6 +61,9 @@ const LoginForm = (props) => {
                             required 
                             />
                         </div>   
+                    }
+                    {
+                        submitError && <span> { submitError } </span>
                     }
                     <div>
                         <button type="submit" disabled={submitting || pristine}>
