@@ -2,6 +2,7 @@ import React from 'react';
 import { Form, Field } from 'react-final-form'
 import { Input } from '../common/FormsControls/FormsControls';
 import { requiredField } from '../../utils/validators/validators';
+import { Alert, Button } from 'react-bootstrap';
 
 const Login = (props) => {
 
@@ -62,14 +63,19 @@ const LoginForm = (props) => {
                             />
                         </div>   
                     }
-                    {
-                        submitError && <span> { submitError } </span>
-                    }
                     <div>
-                        <button type="submit" disabled={submitting || pristine}>
+                        <Button
+                            type="submit" disabled={submitting || pristine}
+                            variant="primary">
                             Log in
-                        </button>
+                        </Button>
                     </div>
+                    {
+                        submitError && 
+                        <Alert variant='danger' >
+                            { submitError }
+                        </Alert>
+                    }
                 </form>
             )}
         />
