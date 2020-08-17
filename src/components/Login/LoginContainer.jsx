@@ -14,14 +14,17 @@ class LoginContainer extends React.Component {
     render () {
         if (this.props.isAuth) return <Redirect to='/profile' />
         return (
-            <Login login={ this.login } />
+            <Login 
+            login={ this.login }
+            captcha={ this.props.captcha } />
         )
     }
 }
 
 const mapStateToProps = (state) => {
     return {
-        isAuth: state.auth.isAuth
+        isAuth: state.auth.isAuth,
+        captcha: state.auth.captcha
     }
 }
 

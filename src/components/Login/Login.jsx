@@ -6,13 +6,14 @@ import { requiredField } from '../../utils/validators/validators';
 const Login = (props) => {
 
     const onSubmit = (data) => {
+        console.log(data)
         props.login(data);
     }
 
     return (
         <div>
             <h1>Login</h1>
-            <LoginForm onSubmit={onSubmit} />
+            <LoginForm onSubmit={onSubmit} captcha={ props.captcha } />
         </div>
     );
 }
@@ -48,8 +49,22 @@ const LoginForm = (props) => {
                         <Field 
                         name="rememberMe" 
                         component={ Input } 
-                        type="checkbox" />
+                        type="checkbox" 
+                        />
                     </div>
+                    {
+                        props.captcha && 
+                        <div>
+                            <img src={ props.captcha } alt="captcha"></img>
+                            <Field 
+                            name="captcha"
+                            component={ Input }
+                            type="text"
+                            placeholder="Captcha"
+                            required 
+                            />
+                        </div>   
+                    }
                     <div>
                         <button type="submit" disabled={submitting || pristine}>
                             Log in

@@ -1,13 +1,15 @@
 import { headerAPI, authAPI } from "../api/api";
 
 const SET_USER_DATA = 'SET_USER_DATA';
+const SET_CAPTCHA = 'SET_CAPTCHA';
 
 let initialState = {
     userId: null,
     email: null,
     login: null,
     isAuth: false,
-    isFetching: true
+    isFetching: true,
+    captcha: null
 };
 
 const authReducer = (state = initialState, action) => {
@@ -19,14 +21,21 @@ const authReducer = (state = initialState, action) => {
                 ...action.payload
             }
         }
+        case SET_CAPTCHA: {
+            return {
+                ...state,
+                captcha: action.captcha
+            }
+        }
         default:
             return state;
     }  
 }
 
-export const setAuthUserData= (userId, email, login, isAuth) => ({ type: SET_USER_DATA, payload: {
+export const setAuthUserData = (userId, email, login, isAuth) => ({ type: SET_USER_DATA, payload: {
     userId, email, login, isAuth
 } })
+export const setCaptcha = (captcha) => ({ type: SET_CAPTCHA, captcha})
 
 export const getAuthUserData = () => (dispatch) => {
     headerAPI.authMe()
@@ -38,12 +47,21 @@ export const getAuthUserData = () => (dispatch) => {
     });
 }
 
-export const login = ({email, password, rememberMe}) => (dispatch) => {
-    authAPI.login(email, password, rememberMe)
+export const getCaptcha = () => (dispatch) => {
+    authAPI.getCaptcha()
+    .then(url => {
+        dispatch(setCaptcha(url));
+    });
+}
+
+export const login = ({email, password, rememberMe, captcha}) => (dispatch) => {
+    authAPI.login(email, password, rememberMe, captcha)
     .then(data => {
+        debugger
         data.resultCode === 0 
         ? dispatch(getAuthUserData())
-        : console.log(...data.messages)
+        : console.log(...data.messages);
+        data.resultCode === 10 && dispatch(getCaptcha());
     });
 }
 
@@ -55,5 +73,7 @@ export const logout = () => (dispatch) => {
         : console.log(...data.messages)
     });
 }
+
+
 
 export default authReducer;
