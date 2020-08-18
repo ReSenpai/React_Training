@@ -5,14 +5,17 @@ import usersReducer from "./users_reducer";
 import authReducer from "./auth_reducer";
 import thunkMiddleware from 'redux-thunk';
 import newsReducer from "./news_reducer";
+import appReducer from "./app_reducer";
 
 let reducersPack = combineReducers({
     profilePage: profileReducer,
     dialogsPage: dialogsReducer,
     usersPage: usersReducer,
     auth: authReducer,
-    newsPage: newsReducer
+    newsPage: newsReducer,
+    app: appReducer
 });
+
 
 let store = createStore(reducersPack, applyMiddleware(thunkMiddleware));
 

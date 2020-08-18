@@ -1,4 +1,4 @@
-import { headerAPI, authAPI } from "../api/api";
+import { authAPI } from "../api/api";
 import { FORM_ERROR } from 'final-form'
 
 const SET_USER_DATA = 'SET_USER_DATA';
@@ -39,7 +39,7 @@ export const setAuthUserData = (userId, email, login, isAuth) => ({ type: SET_US
 export const setCaptcha = (captcha) => ({ type: SET_CAPTCHA, captcha})
 
 export const getAuthUserData = () => (dispatch) => {
-    headerAPI.authMe()
+    return authAPI.authMe()
     .then(data => {
         let {id, email, login} = data.data;
         data.resultCode === 0
