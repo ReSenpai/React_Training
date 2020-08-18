@@ -61,8 +61,10 @@ export const login = ({email, password, rememberMe, captcha}) => async (dispatch
         dispatch(getAuthUserData())
     } else {
         data.resultCode === 10 && dispatch(getCaptcha());
-        console.log(data.messages[0])
-        return { [FORM_ERROR]: data.messages[0]}
+        const error = data.messages.length > 0
+        ? data.messages[0]
+        : 'Some error'
+        return { [FORM_ERROR]: error}
     }
 }
 
