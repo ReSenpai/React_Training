@@ -2,7 +2,7 @@ import React from 'react';
 import { Form, Field } from 'react-final-form'
 import { Input } from '../common/FormsControls/FormsControls';
 import { requiredField } from '../../utils/validators/validators';
-import { Alert, Button } from 'react-bootstrap';
+import { Form as FormBootsrap, Alert, Button } from 'react-bootstrap';
 
 const Login = (props) => {
 
@@ -21,35 +21,36 @@ const LoginForm = (props) => {
         <Form
             onSubmit={props.onSubmit}
             render={({ handleSubmit, submitting, pristine, submitError }) => (
-                <form onSubmit={handleSubmit}>
-                    <div>
+                <FormBootsrap onSubmit={handleSubmit}>
+                    <FormBootsrap.Group controlId="formBasicEmail">
                         <Field
-                        name="email"
-                        component={ Input }
-                        type="email"
-                        placeholder="Login"
-                        required
-                        validate={ requiredField }
-                        />
-                    </div>
-                    <div>
+                            name="email"
+                            component={ Input }
+                            type="email"
+                            placeholder="Login"
+                            required
+                            validate={ requiredField }
+                            />
+                    </FormBootsrap.Group>
+
+                    <FormBootsrap.Group controlId="formBasicPassword">
                         <Field
-                        name="password"
-                        component={ Input }
-                        type="password"
-                        placeholder="Password"
-                        required
-                        validate={ requiredField }
-                        />
-                    </div>
-                    <div>
-                        <label>Remember Me</label>
+                            name="password"
+                            component={ Input }
+                            type="password"
+                            placeholder="Password"
+                            required
+                            validate={ requiredField }
+                            />
+                    </FormBootsrap.Group>
+                    <FormBootsrap.Group controlId="formBasicCheckbox">
                         <Field 
-                        name="rememberMe" 
-                        component={ Input } 
-                        type="checkbox" 
-                        />
-                    </div>
+                            name="rememberMe" 
+                            component={ FormBootsrap.Check } 
+                            type="checkbox"
+                            label="Remember Me"
+                            />
+                    </FormBootsrap.Group>
                     {
                         props.captcha && 
                         <div>
@@ -64,9 +65,10 @@ const LoginForm = (props) => {
                         </div>   
                     }
                     <div>
-                        <Button
-                            type="submit" disabled={submitting || pristine}
-                            variant="primary">
+                        <Button 
+                            variant="primary" 
+                            type="submit"
+                            disabled={submitting || pristine}>
                             Log in
                         </Button>
                     </div>
@@ -76,7 +78,7 @@ const LoginForm = (props) => {
                             { submitError }
                         </Alert>
                     }
-                </form>
+                </FormBootsrap>
             )}
         />
     )
