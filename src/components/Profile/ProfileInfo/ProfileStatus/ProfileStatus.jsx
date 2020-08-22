@@ -1,70 +1,56 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { ReactComponent as MeditationIcon } from '../../../../assets/icons/self_improvement.svg' 
 import styles from './ProfileStatus.module.css';
 
 
-class ProfileStatus extends React.Component {
+const ProfileStatus = (props) => {
 
-    state = {
-        editMode: false,
-        status: this.props.status
+    let [editMode, setEditMode] = useState(false);
+    let [status, setStatus] = useState(props.status);
+
+    useEffect(() => {
+        setStatus(props.status);
+    }, [props.status]);
+
+    const activateEditMode = () => {
+        setEditMode(true);
     }
 
-    activateEditMode = () => {
-        this.setState({
-            editMode: true
-        });
+    const deactivateEditMode = () => {
+        setEditMode(false);
+        props.updateUserStatus(status);
     }
 
-    deactivateEditMode = () => {
-        this.setState({
-            editMode: false
-        });
-        this.props.updateUserStatus(this.state.status);
+    const onStatusChange = (event) => {
+        setStatus(event.currentTarget.value);
     }
 
-    onStatusChange = (event) => {
-        this.setState({
-            status: event.currentTarget.value
-        });
-    }
-
-    componentDidUpdate (prevProps, prevState) {
-        if (prevProps.status !== this.props.status) {
-            this.setState({
-                status: this.props.status
-            })
-        }
-    }
-
-    render () {
-        return (
-            <div className={ styles.profileStatusContainer }>
-                Status: 
-                <MeditationIcon />
-                { !this.state.editMode &&
-                    <div className={ styles.SpanWrapper}>
-                        <span 
-                            onDoubleClick={ this.activateEditMode }>
-                            { this.state.status || 'Поделитесь своими мыслями :3' }
-                        </span>
-                    </div>
-                }
-                { this.state.editMode &&
-                    <div>
-                        <input 
-                            type="text" 
-                            value={ this.state.status || '' }
-                            onBlur={ this.deactivateEditMode }
-                            autoFocus={ true }
-                            placeholder='Status'
-                            onChange={ this.onStatusChange }
-                             />
-                    </div>
-                }
-            </div>
-        )
-    }    
+    return (
+        <div className={ styles.profileStatusContainer }>
+            Status: 
+            <MeditationIcon />
+            { !editMode &&
+                <div className={ styles.SpanWrapper}>
+                    <span
+                        onDoubleClick={ activateEditMode }>
+                        { props.status || 'Поделитесь своими мыслями :3' } 
+                    </span>
+                </div>
+            }
+            { editMode &&
+                <div>
+                    <input 
+                        type="text" 
+                        value={ status || '' }
+                        onBlur={ deactivateEditMode }
+                        autoFocus={ true }
+                        placeholder='Status'
+                        onChange={ onStatusChange }
+                         />
+                </div>
+            }
+        </div>
+    );   
 }
 
 export default ProfileStatus;

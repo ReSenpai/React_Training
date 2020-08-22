@@ -3,7 +3,6 @@ import style from './ProfileInfo.module.css';
 import Preloader from '../../common/Preloader/Preloader';
 import SocialMedia from '../../common/SocialMedia/SocialMedia';
 import ProfileStatus from './ProfileStatus/ProfileStatus';
-import ProfileStatusWithHooks from './ProfileStatus/ProfileStatusWithHooks';
 
 const ProfileInfo = (props) => {
 
@@ -29,7 +28,7 @@ const ProfileInfo = (props) => {
                                 : 'https://miro.medium.com/max/720/1*W35QUSvGpcLuxPo3SRTH4w.png' 
                             } 
                         alt="User photo"/>
-                    <ProfileStatusWithHooks 
+                    <ProfileStatus 
                     status={ props.status }
                     updateUserStatus={ props.updateUserStatus } />
                 </div>
