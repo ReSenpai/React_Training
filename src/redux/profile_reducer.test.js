@@ -15,9 +15,9 @@ let state = {
 test('The length of the posts should increase', () => {
     let action = addPost('Elza');
     // 2. action
-    let newState = profileReducer(state, action);
+    let testState = profileReducer(state, action);
     // 3. expection
-    expect(newState.posts.length).toBe(6);
+    expect(testState.posts.length).toBe(6);
 });
 test('The post should be added to the beginning of the array and be correct', () => {
     let action = addPost('Elza');
@@ -26,11 +26,11 @@ test('The post should be added to the beginning of the array and be correct', ()
 });
 test('After removed, the length of the posts (array) should be reduced', () => {
     let action = deletePost(1);
-    let newState = profileReducer(state, action);
-    expect(newState.posts.length).toBe(4);
+    let testState = profileReducer(state, action);
+    expect(testState.posts.length).toBe(4);
 });
 test('After removed, the length of the array should not change if the id was incorrect.', () => {
     let action = deletePost(undefined);
-    let newState = profileReducer(state, action);
-    expect(newState.posts.length).toBe(5);
+    let testState = profileReducer(state, action);
+    expect(testState.posts.length).toBe(5);
 });
