@@ -5,18 +5,16 @@ import { connect } from 'react-redux';
 import { login } from '../../redux/auth_reducer';
 import { Redirect } from 'react-router-dom';
 
-class LoginContainer extends React.Component {
+const LoginContainer = (props) => {
 
-    login = (data) => this.props.login(data);
+    const login = (data) => props.login(data);
 
-    render () {
-        if (this.props.isAuth) return <Redirect to='/profile' />
-        return (
-            <Login 
-            login={ this.login }
-            captcha={ this.props.captcha } />
-        )
-    }
+    if (props.isAuth) return <Redirect to='/profile' />
+    return (
+        <Login 
+        login={ login }
+        captcha={ props.captcha } />
+    )
 }
 
 const mapStateToProps = (state) => {

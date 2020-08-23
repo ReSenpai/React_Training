@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import Profile from './Profile';
 import { connect } from 'react-redux';
 import { 
@@ -10,26 +10,23 @@ import { withRouter } from 'react-router-dom';
 import { withAuthRedirect } from '../../hoc/withAuthRedirect';
 import { compose } from 'redux';
 
-class ProfileContainer extends React.Component {
+const ProfileContainer = (props) => {
 
-    componentDidMount() {
-        let userId = this.props.match.params.userId;
-        if (!userId) userId = this.props.authorizedUserId;
-        this.props.getUserProfile(userId);
-        this.props.getUserStatus(userId);
-    }
+    let userId = props.match.params.userId || props.authorizedUserId;
 
-    render () {
-        console.log('render PROFILE'); 
-        return (
-            <Profile { ...this.props } />
-        )
-    } 
+    useEffect(() => {
+        if (props.profile && userId === props.profile.userId) return;
+        props.getUserProfile(userId);
+        props.getUserStatus(userId);
+    }, [userId]);
+      
+    return (
+        <Profile { ...props } />
+    )
 }
 
 
 const mapStateToProps = (state) => {
-    console.log('mapStateToProps PROFILE');
     return ({
         profile: state.profilePage.profile,
         authorizedUserId: state.auth.userId,

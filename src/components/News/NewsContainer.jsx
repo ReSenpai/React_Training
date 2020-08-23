@@ -4,10 +4,8 @@ import News from './News';
 import { connect } from 'react-redux';
 import { updateNewSearchQuery } from '../../redux/news_reducer';
 
-class NewsContiner extends React.Component {
-    render () {
-        return <News {...this.props} />
-    }
+const NewsContiner = (props) => {
+    return <News {...props} />
 }
 
 const mapStateToProps = (state) => {
