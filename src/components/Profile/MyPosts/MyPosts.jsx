@@ -7,7 +7,6 @@ import { Textarea } from '../../common/FormsControls/FormsControls';
 
 
 const MyPosts = (props) => {
-    
     let postsElement = props.posts.map((post, i) => <Post
         key={ i }
         nickname={ post.nickname }
@@ -65,4 +64,4 @@ const AddNewPostForm = (props) => {
 
 
 
-export default MyPosts;
+export default React.memo(MyPosts);
