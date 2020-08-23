@@ -21,8 +21,8 @@ test('The length of the posts should increase', () => {
 });
 test('The post should be added to the beginning of the array and be correct', () => {
     let action = addPost('Elza');
-    let newState = profileReducer(state, action);
-    expect(newState.posts[0].text).toBe('Elza');
+    let testState = profileReducer(state, action);
+    expect(testState.posts[0].text).toBe('Elza');
 });
 test('After removed, the length of the posts (array) should be reduced', () => {
     let action = deletePost(1);
