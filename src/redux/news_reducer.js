@@ -1,5 +1,5 @@
 
-const UPDATE_NEW_SEARCH_QUERY = 'UPDATE_NEW_SEARCH_QUERY';
+const UPDATE_NEW_SEARCH_QUERY = 'news/UPDATE_NEW_SEARCH_QUERY';
 
 let initialState = {
     searchResult: [],

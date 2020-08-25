@@ -1,8 +1,8 @@
 import { authAPI } from "../api/api";
 import { FORM_ERROR } from 'final-form'
 
-const SET_USER_DATA = 'SET_USER_DATA';
-const SET_CAPTCHA = 'SET_CAPTCHA';
+const SET_USER_DATA = 'auth/SET_USER_DATA';
+const SET_CAPTCHA = 'auth/SET_CAPTCHA';
 
 let initialState = {
     userId: null,
@@ -48,11 +48,9 @@ export const getAuthUserData = () => (dispatch) => {
     });
 }
 
-export const getCaptcha = () => (dispatch) => {
-    authAPI.getCaptcha()
-    .then(url => {
-        dispatch(setCaptcha(url));
-    });
+export const getCaptcha = () => async (dispatch) => {
+    const url = await authAPI.getCaptcha()
+    dispatch(setCaptcha(url));
 }
 
 export const login = ({email, password, rememberMe, captcha}) => async (dispatch) => {
@@ -68,13 +66,12 @@ export const login = ({email, password, rememberMe, captcha}) => async (dispatch
     }
 }
 
-export const logout = () => (dispatch) => {
-    authAPI.logout()
-    .then(data => {
-        data.resultCode === 0 
-        ? dispatch(setAuthUserData(null, null, null, false))
-        : console.log(...data.messages)
-    });
+export const logout = () => async (dispatch) => {
+    const data = await authAPI.logout();
+
+    data.resultCode === 0 
+    ? dispatch(setAuthUserData(null, null, null, false))
+    : console.log(...data.messages)
 }
 
 
