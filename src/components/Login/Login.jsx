@@ -4,22 +4,24 @@ import { Input } from '../common/FormsControls/FormsControls';
 import { requiredField } from '../../utils/validators/validators';
 import { Form as FormBootsrap, Alert, Button } from 'react-bootstrap';
 
-const Login = (props) => {
+const Login = ({getLogin, captcha}) => {
 
-    const onSubmit = (data) => props.login(data);
+    const onSubmit = (data) => getLogin(data);
 
     return (
         <div>
             <h1>Login</h1>
-            <LoginForm onSubmit={onSubmit} captcha={ props.captcha } />
+            <LoginForm 
+                onSubmit={ onSubmit } 
+                captcha={ captcha } />
         </div>
     );
 }
 
-const LoginForm = (props) => {
+const LoginForm = ({onSubmit, captcha}) => {
     return (
         <Form
-            onSubmit={props.onSubmit}
+            onSubmit={onSubmit}
             render={({ handleSubmit, submitting, pristine, submitError }) => (
                 <FormBootsrap onSubmit={handleSubmit}>
                     <FormBootsrap.Group controlId="formBasicEmail">
@@ -52,9 +54,9 @@ const LoginForm = (props) => {
                             />
                     </FormBootsrap.Group>
                     {
-                        props.captcha && 
+                        captcha && 
                         <div>
-                            <img src={ props.captcha } alt="captcha"></img>
+                            <img src={ captcha } alt="captcha"></img>
                             <Field 
                             name="captcha"
                             component={ Input }
