@@ -2,9 +2,9 @@ import React from 'react';
 import styles from './FormControls.module.css';
 import { Form } from 'react-bootstrap';
 
-const Element = Element => ({ input, meta, ...props }) => {
+const Element = Element => ({ input, meta: {touched, error}, ...props }) => {
     
-    const hasError = meta.touched && meta.error;
+    const hasError = touched && error;
     
     return (
         <div className={ styles.formControl + " " + (hasError && styles.error) }>
@@ -13,7 +13,7 @@ const Element = Element => ({ input, meta, ...props }) => {
             </div>
             <div>
                 { hasError 
-                && <Form.Text className={`text-muted ${styles.errorText}`}>{ meta.error }</Form.Text> 
+                && <Form.Text className={`text-muted ${styles.errorText}`}>{ error }</Form.Text> 
                 }
             </div>
         </div>
