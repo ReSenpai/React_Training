@@ -13,50 +13,65 @@ let state = {
     status: ''
 };
 
-describe('addPost action:', () => {
-    test('length of the posts should increase', () => {
-        let action = addPost('Elza');
-        // 2. action
-        let testState = profileReducer(state, action);
-        // 3. expection
-        expect(testState.posts.length).toBe(6);
+describe('Actions into reducer', () => {
+    describe('addPost:', () => {
+
+        const addPostAction = (post) => profileReducer(state, addPost(post));
+
+        test('Length of the posts should increase', () => {
+            expect(addPostAction('Elza').posts.length).toBe(6);
+        });
+        test('Post should be added to the beginning of the array and be correct', () => {
+            expect(addPostAction('Elza').posts[0].text).toBe('Elza');
+        });
+        test('Post should be defined', () => {
+            expect(addPostAction('Elza').posts[0].text).toBeDefined();
+        });
     });
-    test('post should be added to the beginning of the array and be correct', () => {
-        let newState = profileReducer(state, addPost('Elza'));
-        expect(newState.posts[0].text).toBe('Elza');
+    describe('deletePost:', () => {
+
+        const deletePostAction = (id) => profileReducer(state, deletePost(id));
+
+        test('After removed length of the posts (array) should be reduced', () => {
+            expect(deletePostAction(1).posts.length).toBe(4);
+        });
+        test('After removed length of the array should not change if the id was incorrect.', () => {
+            expect(deletePostAction(undefined).posts.length).toBe(5);
+        });
     });
-});
-describe('deletePost action:', () => {
-    test('After removed, the length of the posts (array) should be reduced', () => {
-        let newState = profileReducer(state, deletePost(1));
-        expect(newState.posts.length).toBe(4);
+    describe('setUserProfile:', () => {
+        const profileObj = {name: 'Elza', age: '25'};
+        const setUserProfileAction = (profile) => profileReducer(state, setUserProfile(profile));
+
+        test('Profile value should be the object', () => {
+            expect(
+                (typeof setUserProfileAction({}).profile === "object") 
+                && (!Array.isArray(setUserProfileAction({}).profile))
+            ).toBeTruthy();
+        });
+        test('User object should come to the profile and should not be empty', () => {
+            expect(setUserProfileAction(profileObj).profile).toEqual(profileObj);
+        });
+        test('Profile value should be defined', () => {
+            expect(setUserProfileAction(profileObj).posts[0].text).toBeDefined();
+        });
+        test('Profile value should not be null', () => {
+            expect(setUserProfileAction(profileObj).posts[0].text).not.toBeNull();
+        });
     });
-    test('After removed, the length of the array should not change if the id was incorrect.', () => {
-        let newState = profileReducer(state, deletePost(undefined));
-        expect(newState.posts.length).toBe(5);
-    });
-});
-describe('setUserProfile action:', () => {
-    test('The profile value should be the object', () => {
-        let newState = profileReducer(state, setUserProfile({}));
-        expect(
-            (typeof newState.profile === "object") 
-            && (!Array.isArray(newState.profile))
-        ).toBeTruthy();
-    });
-    test('User object should come to the profile and should not be empty', () => {
-        let newState = profileReducer(state, setUserProfile({name: 'Elza', age: '25'}));
-        expect(newState.profile).toEqual({name: 'Elza', age: '25'});
-    });
-});
-describe('setStatus action:', () => {
-    test('length of the status should increase', () => {
-        let newState = profileReducer(state, setStatus('React'));
-        expect(newState.status.length).toBeGreaterThan(1);
-    });
-    test('status data type should be a line', () => {
-        let newState = profileReducer(state, setStatus('That is string'));
-        expect(typeof newState.status).toBe('string');
+    describe('setStatus:', () => {
+
+        const setStatusAction = (status) => profileReducer(state, setStatus(status));
+
+        test('Length of the status should increase', () => {
+            expect(setStatusAction('React').status.length).toBeGreaterThan(1);
+        });
+        test('Status data type should be a line', () => {
+            expect(typeof setStatusAction('That is string').status).toBe('string');
+        });
+        test('Status value should be defined', () => {
+            expect(setStatusAction('React').status).toBeDefined();
+        });
     });
 });
 
