@@ -5,15 +5,15 @@ import { connect } from 'react-redux';
 import { login } from '../../redux/auth_reducer';
 import { Redirect } from 'react-router-dom';
 
-const LoginContainer = (props) => {
+const LoginContainer = ({login, isAuth, captcha}) => {
 
-    const login = (data) => props.login(data);
+    const getLogin = (data) => login(data);
 
-    if (props.isAuth) return <Redirect to='/profile' />
+    if (isAuth) return <Redirect to='/profile' />
     return (
         <Login 
-        login={ login }
-        captcha={ props.captcha } />
+        getLogin={ getLogin }
+        captcha={ captcha } />
     )
 }
 
