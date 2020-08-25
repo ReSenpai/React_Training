@@ -1,6 +1,5 @@
-import profileReducer, { addPost, deletePost } from "./profile_reducer";
-import React from 'react';
-import { render } from '@testing-library/react';
+import profileReducer, { addPost, deletePost, setUserProfile, setStatus } from "./profile_reducer";
+
 // 1. test data
 let state = {
     posts: [
@@ -9,28 +8,56 @@ let state = {
         { id: 3, nickname: 'Bot9000', text: 'Whyyyyyyyyyyyyyyyyyyyyy?', avatar: 'https://i.pinimg.com/736x/f8/8f/31/f88f31f29fb6e42b8c387743405166b7.jpg', like: 5 },
         { id: 4, nickname: 'Human', text: 'Why not :)', avatar: 'https://pbs.twimg.com/profile_images/1082020318523412480/E87sUSUc_400x400.jpg', like: 1 },
         { id: 5, nickname: 'Solo', text: 'Olivia', avatar: 'https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcRTB1XNd7zac9ZAJs3LHlgHbGdhVsjyohiqHQ&usqp=CAU', like: 4 }
-    ]
+    ],
+    profile: null,
+    status: ''
 };
 
-test('The length of the posts should increase', () => {
-    let action = addPost('Elza');
-    // 2. action
-    let testState = profileReducer(state, action);
-    // 3. expection
-    expect(testState.posts.length).toBe(6);
+describe('addPost action:', () => {
+    test('length of the posts should increase', () => {
+        let action = addPost('Elza');
+        // 2. action
+        let testState = profileReducer(state, action);
+        // 3. expection
+        expect(testState.posts.length).toBe(6);
+    });
+    test('post should be added to the beginning of the array and be correct', () => {
+        let newState = profileReducer(state, addPost('Elza'));
+        expect(newState.posts[0].text).toBe('Elza');
+    });
 });
-test('The post should be added to the beginning of the array and be correct', () => {
-    let action = addPost('Elza');
-    let testState = profileReducer(state, action);
-    expect(testState.posts[0].text).toBe('Elza');
+describe('deletePost action:', () => {
+    test('After removed, the length of the posts (array) should be reduced', () => {
+        let newState = profileReducer(state, deletePost(1));
+        expect(newState.posts.length).toBe(4);
+    });
+    test('After removed, the length of the array should not change if the id was incorrect.', () => {
+        let newState = profileReducer(state, deletePost(undefined));
+        expect(newState.posts.length).toBe(5);
+    });
 });
-test('After removed, the length of the posts (array) should be reduced', () => {
-    let action = deletePost(1);
-    let testState = profileReducer(state, action);
-    expect(testState.posts.length).toBe(4);
+describe('setUserProfile action:', () => {
+    test('The profile value should be the object', () => {
+        let newState = profileReducer(state, setUserProfile({}));
+        expect(
+            (typeof newState.profile === "object") 
+            && (!Array.isArray(newState.profile))
+        ).toBeTruthy();
+    });
+    test('User object should come to the profile and should not be empty', () => {
+        let newState = profileReducer(state, setUserProfile({name: 'Elza', age: '25'}));
+        expect(newState.profile).toEqual({name: 'Elza', age: '25'});
+    });
 });
-test('After removed, the length of the array should not change if the id was incorrect.', () => {
-    let action = deletePost(undefined);
-    let testState = profileReducer(state, action);
-    expect(testState.posts.length).toBe(5);
+describe('setStatus action:', () => {
+    test('length of the status should increase', () => {
+        let newState = profileReducer(state, setStatus('React'));
+        expect(newState.status.length).toBeGreaterThan(1);
+    });
+    test('status data type should be a line', () => {
+        let newState = profileReducer(state, setStatus('That is string'));
+        expect(typeof newState.status).toBe('string');
+    });
 });
+
+
