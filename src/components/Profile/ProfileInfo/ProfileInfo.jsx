@@ -4,9 +4,9 @@ import Preloader from '../../common/Preloader/Preloader';
 import SocialMedia from '../../common/SocialMedia/SocialMedia';
 import ProfileStatus from './ProfileStatus/ProfileStatus';
 
-const ProfileInfo = (props) => {
+const ProfileInfo = ({profile, status, updateUserStatus}) => {
 
-    if (!props.profile) {
+    if (!profile) {
         return <Preloader />
     }
     return (
@@ -23,21 +23,21 @@ const ProfileInfo = (props) => {
                     <img
                         className={ style.user_photo } 
                         src={ 
-                            props.profile.photos.large
-                                ? props.profile.photos.large
+                            profile.photos.large
+                                ? profile.photos.large
                                 : 'https://miro.medium.com/max/720/1*W35QUSvGpcLuxPo3SRTH4w.png' 
                             } 
                         alt="User photo"/>
                     <ProfileStatus 
-                    status={ props.status }
-                    updateUserStatus={ props.updateUserStatus } />
+                    status={ status }
+                    updateUserStatus={ updateUserStatus } />
                 </div>
                 <div>
-                    <h2>{ props.profile.fullName }</h2>
-                    <div>{ props.profile.aboutMe }</div>
+                    <h2>{ profile.fullName }</h2>
+                    <div>{ profile.aboutMe }</div>
                     <div>{ 
-                        props.profile.lookingForAJob
-                            ? props.profile.lookingForAJobDescription
+                        profile.lookingForAJob
+                            ? profile.lookingForAJobDescription
                             : 'Не ищу работу' 
                         }
                     </div>
