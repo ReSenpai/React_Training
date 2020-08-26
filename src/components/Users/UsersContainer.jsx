@@ -1,14 +1,7 @@
 import React, { useEffect } from 'react';
 import Users from './Users';
 import { connect } from 'react-redux';
-import { 
-    follow, 
-    unfollow, 
-    setCurrentPage, 
-    toggleFollowingProgress,
-    requestUsers,
-    getUsersAfterChanged
-} from '../../redux/users_reducer';
+import { follow, unfollow, requestUsers,getUsersAfterChanged} from '../../redux/users_reducer';
 import Preloader from '../common/Preloader/Preloader';
 import { compose } from 'redux';
 import { withAuthRedirect } from '../../hoc/withAuthRedirect';
@@ -21,29 +14,42 @@ import {
     getUserSelector
 } from '../../redux/users_selectors';
 
-const UsersContainer = (props) => {
+const UsersContainer = ({
+    users,
+    pageSize,
+    totalUsersCount,
+    currentPage,
+    isFetching,
+    followingInProgress,
+    follow,
+    unfollow,
+    requestUsers,
+    getUsersAfterChanged
+}) => {
 
     useEffect(() => {
-        props.requestUsers(props.currentPage, props.pageSize);
-    }, [props.currentPage])
+        requestUsers(currentPage, pageSize);
+    }, [currentPage])
 
     const onPageChanged = (pageNumber) => {
-        props.getUsersAfterChanged(pageNumber, props.pageSize);
+        getUsersAfterChanged(pageNumber, pageSize);
     }
 
     return (
         <>
-            { props.isFetching ? 
+            { isFetching ? 
             <Preloader /> : 
             <Users
-                totalUsersCount={ props.totalUsersCount }
-                pageSize={ props.pageSize }
-                currentPage={ props.currentPage }
-                users={ props.users }
-                onPageChanged={ onPageChanged }
-                unfollow={ props.unfollow }
-                follow={ props.follow }
-                followingInProgress={ props.followingInProgress } /> 
+                {...{
+                    totalUsersCount,
+                    pageSize,
+                    currentPage,
+                    users,
+                    onPageChanged,
+                    unfollow,
+                    follow,
+                    followingInProgress
+                }} /> 
             }  
         </>
     )
@@ -64,8 +70,6 @@ export default compose(
     connect(mapStateToProps, {
         follow,
         unfollow,
-        setCurrentPage,
-        toggleFollowingProgress,
         requestUsers,
         getUsersAfterChanged
     }),
