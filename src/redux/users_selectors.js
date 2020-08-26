@@ -1,12 +1,10 @@
 import { createSelector } from "reselect";
 
 export const getUsers = (state) => {
-    console.log('Просто селектор');
     return state.usersPage.users;
 }
 
 export const getUserSelector = createSelector(getUsers, (users) => {
-    console.log('Реселектор');
     return users.filter(u => true);
 })
 
