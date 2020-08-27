@@ -1,4 +1,4 @@
-import authReducer, { setAuthUserData } from "./auth_reducer";
+import authReducer, { setAuthUserData, setCaptcha } from "./auth_reducer";
 
 let state = {
     userId: null,
@@ -34,7 +34,18 @@ describe('Actions into reducer', () => {
             test('login', () => expect(setAuthUserDataAction(true).login).toBe('elza'));
             test('isAuth', () => expect(setAuthUserDataAction(true).isAuth).toBe(true));
             test('isAuth', () => expect(setAuthUserDataAction(false).isAuth).toBe(false));
+        }); 
+    });
+    describe('setCaptcha:', () => {
+
+        const setCaptchaAction = () => authReducer(state, setCaptcha(
+            'https://react-captcha.com/captcha'
+        ));
+
+        test('captcha value should be defined', () => expect(setCaptchaAction()).toBeDefined());
+        test('captcha value should not be null', () => expect(setCaptchaAction()).not.toBeNull());
+        test('After added to state, data must be correct', () => {
+            expect(setCaptchaAction().captcha).toBe('https://react-captcha.com/captcha');
         });
-        
     });
 });
