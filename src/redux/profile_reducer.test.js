@@ -45,8 +45,8 @@ describe('Actions into reducer', () => {
 
         test('Profile value should be the object', () => {
             expect(
-                (typeof setUserProfileAction({}).profile === "object") 
-                && (!Array.isArray(setUserProfileAction({}).profile))
+                (typeof setUserProfileAction(profileObj).profile === "object") 
+                && (!Array.isArray(setUserProfileAction(profileObj).profile))
             ).toBeTruthy();
         });
         test('User object should come to the profile and should not be empty', () => {
