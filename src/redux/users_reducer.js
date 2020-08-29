@@ -12,7 +12,7 @@ const TOGGLE_IS_FOLLOWING_PROGRESS = 'users/TOGGLE_IS_FOLLOWING_PROGRESS';
 let initialState = {
     users: [],
     pageSize: 8,
-    totalUsersCount: 0,
+    totalItemsCount: 0,
     currentPage: 1,
     isFetching: true,
     followingInProgress: []
@@ -43,7 +43,7 @@ const usersReducer = (state = initialState, action) => {
         case SET_TOTAL_USERS_COUNT:
             return {
                 ...state,
-                totalUsersCount: action.count
+                totalItemsCount: action.count
             }
         case TOGGLE_IS_FETCHING:
             return {

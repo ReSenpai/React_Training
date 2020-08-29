@@ -7,7 +7,7 @@ import { compose } from 'redux';
 import { withAuthRedirect } from '../../hoc/withAuthRedirect';
 import { 
     getPageSize, 
-    getTotalUsersCount, 
+    getTotalItemsCount, 
     getCurrentPage, 
     getIsFetching, 
     getFollowingInProgress, 
@@ -17,7 +17,7 @@ import {
 const UsersContainer = ({
     users,
     pageSize,
-    totalUsersCount,
+    totalItemsCount,
     currentPage,
     isFetching,
     followingInProgress,
@@ -41,7 +41,7 @@ const UsersContainer = ({
             <Preloader /> : 
             <Users
                 {...{
-                    totalUsersCount,
+                    totalItemsCount,
                     pageSize,
                     currentPage,
                     users,
@@ -59,7 +59,7 @@ const mapStateToProps = (state) => {
     return {
         users: getUserSelector(state),
         pageSize: getPageSize(state),
-        totalUsersCount: getTotalUsersCount(state),
+        totalItemsCount: getTotalItemsCount(state),
         currentPage: getCurrentPage(state),
         isFetching: getIsFetching(state),
         followingInProgress: getFollowingInProgress(state)

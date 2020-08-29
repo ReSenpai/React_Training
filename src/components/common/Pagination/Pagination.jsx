@@ -3,7 +3,7 @@ import styles from './Paginator.module.css';
 import cn from 'classnames';
 
 const Pagination = ({
-    totalUsersCount: totalItemsCount, 
+    totalItemsCount, 
     pageSize, 
     currentPage, 
     onPageChanged,

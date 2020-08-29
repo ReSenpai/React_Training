@@ -4,7 +4,7 @@ import Pagination from '../common/Pagination/Pagination';
 import User from './User';
 
 const Users = ({
-    totalUsersCount,
+    totalItemsCount,
     pageSize,
     currentPage,
     users,
@@ -16,7 +16,7 @@ const Users = ({
 
     return (
         <div className={ styles.users__wrapper }>
-            <Pagination {...{totalUsersCount, pageSize, currentPage, onPageChanged}} />
+            <Pagination {...{totalItemsCount, pageSize, currentPage, onPageChanged}} />
             {
                 users.map(user =>
                     <User
