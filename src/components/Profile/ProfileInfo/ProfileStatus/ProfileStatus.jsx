@@ -3,54 +3,60 @@ import { ReactComponent as MeditationIcon } from '../../../../assets/icons/self_
 import styles from './ProfileStatus.module.css';
 
 
-const ProfileStatus = (props) => {
+class ProfileStatus extends React.Component {
 
-    let [editMode, setEditMode] = useState(false);
-    let [status, setStatus] = useState(props.status);
-
-    useEffect(() => {
-        setStatus(props.status);
-    }, [props.status]);
-
-    const activateEditMode = () => {
-        setEditMode(true);
+    state = {
+        editMode: false,
+        status: this.props.status
     }
 
-    const deactivateEditMode = () => {
-        setEditMode(false);
-        props.updateUserStatus(status);
+    activateEditMode = () => {
+        this.setState({ editMode: true });
     }
 
-    const onStatusChange = (event) => {
-        setStatus(event.currentTarget.value);
+    deactivateEditMode = () => {
+        this.setState({ editMode: false });
+        this.props.updateUserStatus(this.state.status);
     }
 
-    return (
-        <div className={ styles.profileStatusContainer }>
-            Status: 
-            <MeditationIcon />
-            { !editMode &&
-                <div className={ styles.SpanWrapper}>
-                    <span
-                        onDoubleClick={ activateEditMode }>
-                        { props.status || 'Поделитесь своими мыслями :3' } 
-                    </span>
-                </div>
-            }
-            { editMode &&
-                <div>
-                    <input 
-                        type="text" 
-                        value={ status || '' }
-                        onBlur={ deactivateEditMode }
-                        autoFocus={ true }
-                        placeholder='Status'
-                        onChange={ onStatusChange }
-                         />
-                </div>
-            }
-        </div>
-    );   
+    onStatusChange = (event) => {
+        this.setState({ status: event.currentTarget.value });
+    }
+
+    componentDidUpdate(prevProps, prevState) {
+        if (prevProps.status !== this.props.status) {
+            this.setState({ status: this.props.status })
+        }
+    }
+
+    render() {
+        return (
+            <div className={ styles.profileStatusContainer }>
+                Status: 
+                <MeditationIcon />
+                { !this.state.editMode &&
+                    <div className={ styles.SpanWrapper}>
+                        <span
+                            onDoubleClick={ this.activateEditMode }>
+                            { this.props.status || 'Поделитесь своими мыслями :3' } 
+                        </span>
+                    </div>
+                }
+                { this.state.editMode &&
+                    <div>
+                        <input 
+                            type="text" 
+                            value={ this.state.status || '' }
+                            onBlur={ this.deactivateEditMode }
+                            autoFocus={ true }
+                            placeholder='Status'
+                            onChange={ this.onStatusChange }
+                             />
+                    </div>
+                }
+            </div>
+        ); 
+    }  
 }
 
 export default ProfileStatus;
