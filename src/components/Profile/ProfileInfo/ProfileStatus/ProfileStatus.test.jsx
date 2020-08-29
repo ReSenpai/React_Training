@@ -4,6 +4,7 @@ import ProfileStatus from './ProfileStatus';
 
 
 describe('ProfileStatus component', () => {
+    
     const createComponent = () => create(<ProfileStatus status='Hello friend' />);
     
     test('status sent to the props should be in the state', () => {
@@ -41,6 +42,6 @@ describe('ProfileStatus component', () => {
             updateUserStatus={ mockCallback } />);
         const instance = component.getInstance();
         instance.deactivateEditMode();
-        expect(mockCallback.mock.calls.length).toBe(1);
+        expect(mockCallback).toBeCalledTimes(1);
     });
 });
