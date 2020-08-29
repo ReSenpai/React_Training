@@ -1,27 +1,3 @@
-.users__wrapper {
-    padding-left: 50px;
-}
-
-.selectedPage {
-    font-weight: bold;
-    font-size: 20px;
-}
-
-.user__wrapper {
-    display: flex;
-    width: 350px;
-    height: 75px;
-    border-bottom: 1px solid var(--border);
-    align-items: center;
-    justify-content: space-between;
-    margin-top: 10px;
-}
-
-.username__wrapper {
-    display: flex;
-    flex-direction: column;
-}
-
 .button {
     width: 88px;
     height: 32px;
@@ -51,8 +27,23 @@
     color: var(--dimText);
 }
 
-.image {
+.count {
+    display: inline-block;
+    text-align: center;
     width: 50px;
-    height: 50px;
-    border-radius: 50px;
+    height: 30px;
+}
+
+.paginator {
+    margin: 10px;
+}
+
+.pageNumber {
+    padding: 2px;
+    border: 1px solid whitesmoke;
+}
+
+.pageNumber.selectedPage {
+    font-weight: bold;
+    border: 2px solid white;
 }

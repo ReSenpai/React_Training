@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import { ReactComponent as MeditationIcon } from '../../../../assets/icons/self_improvement.svg' 
 import styles from './ProfileStatus.module.css';
 
