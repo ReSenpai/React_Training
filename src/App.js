@@ -1,19 +1,20 @@
-import React, { Component } from 'react';
+import React, { Component,Suspense, lazy } from 'react';
 import { HashRouter, Route } from 'react-router-dom';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './App.css';
 import Navbar from './components/Navbar/Navbar';
-import Music from './components/Music/Music';
-import DialogsContainer from './components/Dialogs/DialogsContainer';
-import UsersContainer from './components/Users/UsersContainer';
 import ProfileContainer from './components/Profile/ProfileContainer';
 import HeaderContainer from './components/Header/HeaderContainer';
-import SettingContainer from './components/Setting/SettingContainer';
-import NewsContiner from './components/News/NewsContainer';
 import LoginContainer from './components/Login/LoginContainer';
 import { connect } from 'react-redux';
 import { startInitialization } from './redux/app_reducer';
 import Preloader from './components/common/Preloader/Preloader';
+
+const DialogsContainer = lazy(() => import('./components/Dialogs/DialogsContainer'));
+const NewsContiner = lazy(() => import('./components/News/NewsContainer'));
+const Music = lazy(() => import('./components/Music/Music'));
+const UsersContainer = lazy(() => import('./components/Users/UsersContainer'));
+const SettingContainer = lazy(() => import('./components/Setting/SettingContainer'));
 
 class App extends Component {
 
@@ -27,32 +28,34 @@ class App extends Component {
     }
     return (
       <HashRouter>
-        <div className='app-wrapper'>
-          <HeaderContainer />
-          <Navbar />
-          <div className='app-wrapper-content'>
-            <Route path='/profile/:userId?'
-              render={ () => <ProfileContainer />} />
-  
-            <Route path='/messages'
-              render={ () => <DialogsContainer />} />
-  
-            <Route path='/news'
-              render={ () => <NewsContiner />} />
-  
-            <Route path='/music'
-              render={ () => <Music />} />
-  
-            <Route path='/users'
-              render={ () => <UsersContainer />} />
-  
-            <Route path='/setting'
-              render={ () => <SettingContainer />} />
-  
-            <Route path='/login'
-              render={ () => <LoginContainer />} />
+        <Suspense fallback={ Preloader }>
+          <div className='app-wrapper'>
+            <HeaderContainer />
+            <Navbar />
+            <div className='app-wrapper-content'>
+              <Route path='/profile/:userId?'
+                render={ () => <ProfileContainer />} />
+    
+              <Route path='/messages'
+                render={ () => <DialogsContainer />} />
+    
+              <Route path='/news'
+                render={ () => <NewsContiner />} />
+    
+              <Route path='/music'
+                render={ () => <Music />} />
+    
+              <Route path='/users'
+                render={ () => <UsersContainer />} />
+    
+              <Route path='/setting'
+                render={ () => <SettingContainer />} />
+    
+              <Route path='/login'
+                render={ () => <LoginContainer />} />
+            </div>
           </div>
-        </div>
+        </Suspense>
       </HashRouter>
     );
   } 
