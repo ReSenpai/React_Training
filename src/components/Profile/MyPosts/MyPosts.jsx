@@ -19,19 +19,17 @@ const MyPosts = (props) => {
         props.addPost(values.newPostText);
     }
 
-
-    // let pressEnter = (event) => {
-    //     if (event.key === 'Enter') {
-    //         onAddPost();
-    //     }
-    // }
-
+    let pressEnter = (callback) => (event) => {
+        if (event.key === 'Enter') {
+            callback();
+        }
+    }
 
     return (
         <div>
             <h3>My posts</h3>
             <div>
-                <AddNewPostForm onSubmit={ onAddPost } />
+                <AddNewPostForm onSubmit={ onAddPost } pressEnter={ pressEnter } />
             </div>
             <div className={ style.posts }>
                 { postsElement }
@@ -41,6 +39,7 @@ const MyPosts = (props) => {
 }
 
 const AddNewPostForm = (props) => {
+
     return (
         <Form
             onSubmit={ props.onSubmit }
@@ -51,6 +50,7 @@ const AddNewPostForm = (props) => {
                         component={ Textarea }
                         name='newPostText'
                         placeholder='Add post...'
+                        onKeyPress={ props.pressEnter(handleSubmit) }
                         validate={ composeValidators(requiredField, maxLengthCreator(15)) } />
                     </div>
                     <div>
