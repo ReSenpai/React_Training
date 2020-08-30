@@ -8,7 +8,7 @@ import { ReactComponent as MessagesIcon } from '../../assets/icons/messages.svg'
 import { ReactComponent as MusicIcon } from '../../assets/icons/music.svg'
 import { ReactComponent as UsersIcon } from '../../assets/icons/users.svg'
 import { ReactComponent as SettingIcon } from '../../assets/icons/setting.svg'
-import { Container, Row, Col, Navbar as NavbarBootstrap } from 'react-bootstrap';
+import { Container, Row, Col, Button, ButtonGroup } from 'react-bootstrap';
 
 const Navbar = () => {
     return (
@@ -17,11 +17,7 @@ const Navbar = () => {
                 <Row>
                     <Col></Col>
                     <Col>
-                        <NavbarBootstrap variant='light' expand="lg">
-                            <NavbarBootstrap.Brand href="#home">React-Bootstrap</NavbarBootstrap.Brand>
-                            <NavbarBootstrap.Toggle aria-controls="responsive-navbar-nav" />
-                        </NavbarBootstrap>
-                        {/* <NavLink activeClassName={style.active} className={style.item} to='/profile'>
+                        <NavLink activeClassName={style.active} className={style.item} to='/profile'>
                             <ProfileIcon className={style.icons} />
                             <span>Profile</span>
                         </NavLink>
@@ -47,7 +43,7 @@ const Navbar = () => {
                         </NavLink>
                         <div className={style.friends}>
                             <Friends />
-                        </div> */}
+                        </div>
                     </Col>
                 </Row>
             </Container>

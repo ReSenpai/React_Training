@@ -1,3 +1,9 @@
+.nav {
+    position: fixed;
+    margin-top: 50px;
+    margin-left: 70px;
+}
+
 .item {
     display: flex;
     align-items: center;
@@ -28,7 +34,8 @@
 
 .icons {
     margin-right: 10px;
-    transition-duration: 0.1s
+    transition-duration: 0.1s;
+    fill: gray;
 }
 
 .item:hover > svg {
