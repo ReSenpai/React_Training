@@ -1,5 +1,5 @@
 import React, { Component,Suspense, lazy } from 'react';
-import { HashRouter, Route } from 'react-router-dom';
+import { BrowserRouter, Route } from 'react-router-dom';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './App.css';
 import Navbar from './components/Navbar/Navbar';
@@ -28,7 +28,7 @@ class App extends Component {
       return <Preloader />
     }
     return (
-      <HashRouter>
+      <BrowserRouter>
         <Suspense fallback={ Preloader }>
           <Container fluid>
             <Row>
@@ -63,7 +63,7 @@ class App extends Component {
             </Row>
           </Container>
         </Suspense>
-      </HashRouter>
+      </BrowserRouter>
     );
   } 
 }
