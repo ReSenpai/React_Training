@@ -1,14 +1,7 @@
-.nav {
-    position: fixed;
-    grid-area: n;
-    background-color: var(--background);
-    margin: 118px 0 0 14px;
-}
-
 .item {
     display: flex;
     align-items: center;
-    color: var(--text);
+    color: black !important;
     height: 55px;
     margin: 5px;
     font-size: 24px;

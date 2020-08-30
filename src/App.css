@@ -36,27 +36,8 @@ input {
  * App style
 */
 body {
-  background-color: var(--background);
-  color: var(--text);
-  font-family: monospace;
   font-size: 17px;
 }
 
-.app-wrapper {
-  display: grid;
-  width: 1200px;
-  height: 100vh;
-  margin-left: auto;
-  margin-right: auto;
-  grid-template-areas: "h h" "n c";
-  grid-template-rows: 60px 1fr;
-  grid-template-columns: 2fr 10fr;
-  /* grid-gap: 10px; */
-}
 
-.app-wrapper-content {
-  grid-area: c;
-  background-color: var(--background);
-  border-left: 1px solid var(--border);
-  margin-left: 82px;
-}
+

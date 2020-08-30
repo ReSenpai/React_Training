@@ -9,6 +9,7 @@ import LoginContainer from './components/Login/LoginContainer';
 import { connect } from 'react-redux';
 import { startInitialization } from './redux/app_reducer';
 import Preloader from './components/common/Preloader/Preloader';
+import { Container, Row, Col } from 'react-bootstrap';
 
 const DialogsContainer = lazy(() => import('./components/Dialogs/DialogsContainer'));
 const NewsContiner = lazy(() => import('./components/News/NewsContainer'));
@@ -29,32 +30,38 @@ class App extends Component {
     return (
       <HashRouter>
         <Suspense fallback={ Preloader }>
-          <div className='app-wrapper'>
-            <HeaderContainer />
-            <Navbar />
-            <div className='app-wrapper-content'>
-              <Route path='/profile/:userId?'
-                render={ () => <ProfileContainer />} />
-    
-              <Route path='/messages'
-                render={ () => <DialogsContainer />} />
-    
-              <Route path='/news'
-                render={ () => <NewsContiner />} />
-    
-              <Route path='/music'
-                render={ () => <Music />} />
-    
-              <Route path='/users'
-                render={ () => <UsersContainer />} />
-    
-              <Route path='/setting'
-                render={ () => <SettingContainer />} />
-    
-              <Route path='/login'
-                render={ () => <LoginContainer />} />
-            </div>
-          </div>
+          <Container fluid>
+            <Row>
+              <Col>
+                <Navbar />
+              </Col>
+              <Col xs={ 6 }>
+                <Route path='/profile/:userId?'
+                  render={ () => <ProfileContainer />} />
+      
+                <Route path='/messages'
+                  render={ () => <DialogsContainer />} />
+      
+                <Route path='/news'
+                  render={ () => <NewsContiner />} />
+      
+                <Route path='/music'
+                  render={ () => <Music />} />
+      
+                <Route path='/users'
+                  render={ () => <UsersContainer />} />
+      
+                <Route path='/setting'
+                  render={ () => <SettingContainer />} />
+      
+                <Route path='/login'
+                  render={ () => <LoginContainer />} />
+              </Col>
+              <Col>
+                <HeaderContainer />
+              </Col>
+            </Row>
+          </Container>
         </Suspense>
       </HashRouter>
     );
