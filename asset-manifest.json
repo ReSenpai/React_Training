@@ -1,8 +1,8 @@
 {
   "files": {
     "main.css": "/React_Training/static/css/main.26e1f0d4.chunk.css",
-    "main.js": "/React_Training/static/js/main.73d66314.chunk.js",
-    "main.js.map": "/React_Training/static/js/main.73d66314.chunk.js.map",
+    "main.js": "/React_Training/static/js/main.64334dfb.chunk.js",
+    "main.js.map": "/React_Training/static/js/main.64334dfb.chunk.js.map",
     "runtime-main.js": "/React_Training/static/js/runtime-main.c23c44fe.js",
     "runtime-main.js.map": "/React_Training/static/js/runtime-main.c23c44fe.js.map",
     "static/css/2.11829350.chunk.css": "/React_Training/static/css/2.11829350.chunk.css",
@@ -24,7 +24,7 @@
     "static/js/7.438693ce.chunk.js": "/React_Training/static/js/7.438693ce.chunk.js",
     "static/js/7.438693ce.chunk.js.map": "/React_Training/static/js/7.438693ce.chunk.js.map",
     "index.html": "/React_Training/index.html",
-    "precache-manifest.de9892b920c4f54a9348bd03a6ae540f.js": "/React_Training/precache-manifest.de9892b920c4f54a9348bd03a6ae540f.js",
+    "precache-manifest.c7325bc7365cce5325b562744bdcbd70.js": "/React_Training/precache-manifest.c7325bc7365cce5325b562744bdcbd70.js",
     "service-worker.js": "/React_Training/service-worker.js",
     "static/css/2.11829350.chunk.css.map": "/React_Training/static/css/2.11829350.chunk.css.map",
     "static/css/3.80aa0ea7.chunk.css.map": "/React_Training/static/css/3.80aa0ea7.chunk.css.map",
@@ -51,6 +51,6 @@
     "static/css/2.11829350.chunk.css",
     "static/js/2.d4cd4ef1.chunk.js",
     "static/css/main.26e1f0d4.chunk.css",
-    "static/js/main.73d66314.chunk.js"
+    "static/js/main.64334dfb.chunk.js"
   ]
 }
