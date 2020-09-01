@@ -1,6 +1,6 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "bccb39cd77a7c2036bce0320d7498056",
+    "revision": "8af58de47dfd1bb27a96062f36f5f454",
     "url": "/React_Training/index.html"
   },
   {
@@ -8,11 +8,11 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/React_Training/static/css/2.11829350.chunk.css"
   },
   {
-    "revision": "901c32a090b7d54d20be",
+    "revision": "2f5a3ebdc31b7a9c15f6",
     "url": "/React_Training/static/css/3.80aa0ea7.chunk.css"
   },
   {
-    "revision": "ebca9fa9f2c64616bc74",
+    "revision": "db3a2366cdb0c7b6e169",
     "url": "/React_Training/static/css/4.912356bb.chunk.css"
   },
   {
@@ -28,7 +28,7 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/React_Training/static/css/7.fdff491f.chunk.css"
   },
   {
-    "revision": "d239ba80a47a5cd733db",
+    "revision": "a8ef3601cd0ea6b0f412",
     "url": "/React_Training/static/css/main.26e1f0d4.chunk.css"
   },
   {
@@ -40,12 +40,12 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/React_Training/static/js/2.c99ceadd.chunk.js.LICENSE.txt"
   },
   {
-    "revision": "901c32a090b7d54d20be",
-    "url": "/React_Training/static/js/3.3e8f854e.chunk.js"
+    "revision": "2f5a3ebdc31b7a9c15f6",
+    "url": "/React_Training/static/js/3.cb35f917.chunk.js"
   },
   {
-    "revision": "ebca9fa9f2c64616bc74",
-    "url": "/React_Training/static/js/4.9b77dc89.chunk.js"
+    "revision": "db3a2366cdb0c7b6e169",
+    "url": "/React_Training/static/js/4.c7a72222.chunk.js"
   },
   {
     "revision": "d3e7f6fae342c37d01de",
@@ -60,12 +60,12 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/React_Training/static/js/7.438693ce.chunk.js"
   },
   {
-    "revision": "d239ba80a47a5cd733db",
-    "url": "/React_Training/static/js/main.8c6427e5.chunk.js"
+    "revision": "a8ef3601cd0ea6b0f412",
+    "url": "/React_Training/static/js/main.ebd3cfae.chunk.js"
   },
   {
-    "revision": "58e9c3c73c293d7f94f9",
-    "url": "/React_Training/static/js/runtime-main.93efd289.js"
+    "revision": "e9742f1b726c4afe47f3",
+    "url": "/React_Training/static/js/runtime-main.483580f0.js"
   },
   {
     "revision": "223507bbeb748f4f370b04926e6c21d8",
