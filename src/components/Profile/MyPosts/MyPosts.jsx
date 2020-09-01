@@ -51,7 +51,7 @@ const AddNewPostForm = (props) => {
                         name='newPostText'
                         placeholder='Add post...'
                         onKeyPress={ props.pressEnter(handleSubmit) }
-                        validate={ composeValidators(requiredField, maxLengthCreator(15)) } />
+                        validate={ composeValidators(requiredField, maxLengthCreator(120)) } />
                     </div>
                     <div>
                         <button>Add Post</button>
