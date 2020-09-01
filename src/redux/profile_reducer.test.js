@@ -66,11 +66,14 @@ describe('Actions into reducer', () => {
         test('Length of the status should increase', () => {
             expect(setStatusAction('React').status.length).toBeGreaterThan(1);
         });
-        test('Status data type should be a line', () => {
+        test('Status data type should be a "String"', () => {
             expect(typeof setStatusAction('That is string').status).toBe('string');
         });
         test('Status value should be defined', () => {
             expect(setStatusAction('React').status).toBeDefined();
+        });
+        test('Status value should be correct', () => {
+            expect(setStatusAction('Hello friend').status).toBe('Hello friend');
         });
     });
 });
