@@ -1,5 +1,5 @@
 import React, { Component,Suspense, lazy } from 'react';
-import { BrowserRouter, Route } from 'react-router-dom';
+import { HashRouter, Route } from 'react-router-dom';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './App.css';
 import Navbar from './components/Navbar/Navbar';
@@ -10,6 +10,7 @@ import { connect } from 'react-redux';
 import { startInitialization } from './redux/app_reducer';
 import Preloader from './components/common/Preloader/Preloader';
 import { Container, Row, Col } from 'react-bootstrap';
+import { withSuspense } from './hoc/withSuspense';
 
 const DialogsContainer = lazy(() => import('./components/Dialogs/DialogsContainer'));
 const NewsContiner = lazy(() => import('./components/News/NewsContainer'));
@@ -28,42 +29,40 @@ class App extends Component {
       return <Preloader />
     }
     return (
-      <BrowserRouter>
-        <Suspense fallback={ Preloader }>
-          <Container fluid>
-            <Row>
-              <Col>
-                <Navbar />
-              </Col>
-              <Col xs={ 6 }>
-                <Route path='/profile/:userId?'
-                  render={ () => <ProfileContainer />} />
-      
-                <Route path='/messages'
-                  render={ () => <DialogsContainer />} />
-      
-                <Route path='/news'
-                  render={ () => <NewsContiner />} />
-      
-                <Route path='/music'
-                  render={ () => <Music />} />
-      
-                <Route path='/users'
-                  render={ () => <UsersContainer />} />
-      
-                <Route path='/setting'
-                  render={ () => <SettingContainer />} />
-      
-                <Route path='/login'
-                  render={ () => <LoginContainer />} />
-              </Col>
-              <Col>
-                <HeaderContainer />
-              </Col>
-            </Row>
-          </Container>
-        </Suspense>
-      </BrowserRouter>
+      <HashRouter>
+        <Container fluid>
+          <Row>
+            <Col>
+              <Navbar />
+            </Col>
+            <Col xs={ 6 }>
+              <Route path='/profile/:userId?'
+                render={ () => <ProfileContainer />} />
+    
+              <Route path='/messages'
+                render={ withSuspense(DialogsContainer) } />
+    
+              <Route path='/news'
+                render={ withSuspense(NewsContiner)} />
+    
+              <Route path='/music'
+                render={ withSuspense(Music)} />
+    
+              <Route path='/users'
+                render={ withSuspense(UsersContainer)} />
+    
+              <Route path='/setting'
+                render={ withSuspense(SettingContainer)} />
+    
+              <Route path='/login'
+                render={ () => <LoginContainer />} />
+            </Col>
+            <Col>
+              <HeaderContainer />
+            </Col>
+          </Row>
+        </Container>
+      </HashRouter>
     );
   } 
 }
