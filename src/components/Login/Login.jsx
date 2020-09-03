@@ -1,6 +1,6 @@
 import React from 'react';
 import { Form, Field } from 'react-final-form'
-import { Input } from '../common/FormsControls/FormsControls';
+import { Input, Checkbox } from '../common/FormsControls/FormsControls';
 import { requiredField } from '../../utils/validators/validators';
 import { Form as FormBootsrap, Alert, Button } from 'react-bootstrap';
 
@@ -48,7 +48,7 @@ const LoginForm = ({onSubmit, captcha}) => {
                     <FormBootsrap.Group controlId="formBasicCheckbox">
                         <Field 
                             name="rememberMe" 
-                            component={ FormBootsrap.Check } 
+                            component={ Checkbox } 
                             type="checkbox"
                             label="Remember Me"
                             />
