@@ -23,3 +23,4 @@ const Element = Element => ({ input, meta: {touched, error}, ...props }) => {
 
 export const Textarea = Element('textarea');
 export const Input = Element(Form.Control);
+export const Checkbox = Element(Form.Check);
