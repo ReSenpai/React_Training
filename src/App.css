@@ -24,7 +24,7 @@ a, a:hover {
 }
 
 a:visited {
-  color: var(--text);
+  color: #007bff;
 }
 
 button,
