@@ -13,14 +13,39 @@
     margin-bottom: 10px;
 }
 
-.user_photo__wrapper {
-    display: flex;
-    flex-direction: column;
+.userPhotoContainer {
+    width: 300px;
+    height: 300px;
 }
 
-.user_photo {
-    width: 200px;
-    height: 200px;
+.userPhotoContainer img {
+    width: 100%;
+    height: auto;
     object-fit: cover;
     border-radius: 5px;
+}
+
+.userPhotoContainer .button {
+    display: none;
+    position: absolute;
+    top: 31%;
+    left: 27%;
+    transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
+    background-color: #555;
+    color: white;
+    font-size: 16px;
+    padding: 12px 24px;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+    text-align: center;
+}
+
+.userPhotoContainer:hover .button {
+    display: inline-block;
+}
+
+.infoWrapper {
+    padding-left: 20px;
 }
