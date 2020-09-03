@@ -32,7 +32,7 @@ class ProfileStatus extends React.Component {
     render() {
         return (
             <div className={ styles.profileStatusContainer }>
-                Status: 
+                <b>Status: </b> 
                 <MeditationIcon />
                 { !this.state.editMode &&
                     <div className={ styles.SpanWrapper}>
