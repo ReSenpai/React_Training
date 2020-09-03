@@ -1,9 +1,11 @@
 import { profileAPI } from "../api/api";
+import { FORM_ERROR } from 'final-form';
 
 const ADD_POST = 'profile/ADD-POST';
 const SET_USER_PROFILE = 'profile/SET_USER_PROFILE';
 const SET_STATUS = 'profile/SET_STATUS';
 const DELETE_POST = 'profile/DELETE_POST';
+const SAVE_PHOTO_SUCCESS = 'profile/SAVE_PHOTO_SUCCESS';
 
 let initialState = {
     posts: [
@@ -52,6 +54,15 @@ const profileReducer = (state = initialState, action) => {
                 status: action.status
             }
         }
+        case SAVE_PHOTO_SUCCESS: {
+            return {
+                ...state,
+                profile: {
+                    ...state.profile,
+                    photos: action.photos
+                }
+            }
+        }
         default:
             return state;
     }
@@ -61,6 +72,7 @@ export const addPost = (newPostText) => ({ type: ADD_POST, newPostText });
 export const deletePost = (postId) => ({ type: DELETE_POST, postId });
 export const setUserProfile = (profile) => ({ type: SET_USER_PROFILE, profile });
 export const setStatus = (status) => ({ type: SET_STATUS, status });
+export const savePhotoSuccess = (photos) => ({ type: SAVE_PHOTO_SUCCESS, photos });
 
 export const getUserProfile = (userId) => async (dispatch) => {    
     const data = await profileAPI.getUserProfile(userId);
@@ -78,5 +90,27 @@ export const updateUserStatus = (status) => async (dispatch) => {
         dispatch(setStatus(status));
     }
 }
+
+export const savePhoto = (file) => async (dispatch) => {    
+    const response = await profileAPI.savePhoto(file);
+    if(response.resultCode === 0) {
+        dispatch(savePhotoSuccess(response.data.photos));
+    }
+}
+
+export const updateProfile = (profile) => async (dispatch, getState) => {
+    const userId = getState().auth.userId;    
+    const response = await profileAPI.updateProfile(profile);
+    if(response.resultCode === 0) {
+        dispatch(getUserProfile(userId));
+        return false;
+    } else {
+        const error = response.messages.length > 0
+        ? response.messages[0]
+        : 'Some error'
+        return { [FORM_ERROR]: error };
+    }
+}
+
 
 export default profileReducer;
