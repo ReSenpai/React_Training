@@ -1,14 +1,21 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import styles from './ProfileInfo.module.css';
 import Preloader from '../../common/Preloader/Preloader';
 import SocialMedia from '../../common/SocialMedia/SocialMedia';
 import ProfileStatus from './ProfileStatus/ProfileStatus';
 import defaultAvatar from '../../../assets/images/defaultAvatar.png';
-import { useState } from 'react';
 import ProfileDataForm from './ProfileDataForm/ProfileDataForm';
 import { Modal, Form } from 'react-bootstrap';
+import { FORM_ERROR } from 'final-form';
 
-const ProfileInfo = ({profile, status, updateUserStatus, isOwner, savePhoto, updateProfile}) => {
+const ProfileInfo = ({
+    profile, 
+    status, 
+    updateUserStatus, 
+    isOwner, 
+    savePhoto, 
+    updateProfile
+}) => {
 
     const [editMode, setEditMode] = useState(false);
     const activateEditMode = () => setEditMode(true);
@@ -25,9 +32,13 @@ const ProfileInfo = ({profile, status, updateUserStatus, isOwner, savePhoto, upd
         handleClose();
     }
 
-    const onSubmit = (formData) => {
-        updateProfile(formData);
-        setEditMode(false);
+    const onSubmit = async (formData) => {
+        const err = await updateProfile(formData);
+        if (err) {
+            return {[FORM_ERROR]: err}
+        } else {
+            deactivateEditMode();
+        }
     }
 
     if (!profile) {

@@ -1,5 +1,4 @@
 import { profileAPI } from "../api/api";
-import { FORM_ERROR } from 'final-form';
 
 const ADD_POST = 'profile/ADD-POST';
 const SET_USER_PROFILE = 'profile/SET_USER_PROFILE';
@@ -103,12 +102,11 @@ export const updateProfile = (profile) => async (dispatch, getState) => {
     const response = await profileAPI.updateProfile(profile);
     if(response.resultCode === 0) {
         dispatch(getUserProfile(userId));
-        return false;
     } else {
         const error = response.messages.length > 0
         ? response.messages[0]
         : 'Some error'
-        return { [FORM_ERROR]: error };
+        return error;
     }
 }
 

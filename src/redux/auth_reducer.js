@@ -1,5 +1,5 @@
 import { authAPI } from "../api/api";
-import { FORM_ERROR } from 'final-form'
+import { FORM_ERROR } from 'final-form';
 
 const SET_USER_DATA = 'auth/SET_USER_DATA';
 const SET_CAPTCHA = 'auth/SET_CAPTCHA';

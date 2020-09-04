@@ -22,6 +22,7 @@ const ProfileContainer = (props) => {
         props.getUserStatus(userId);
     }, [userId]);
 
+
     return (
         <Profile { ...props } isOwner={!props.match.params.userId} />
     )
