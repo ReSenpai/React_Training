@@ -6,17 +6,23 @@ import ProfileStatus from './ProfileStatus/ProfileStatus';
 import defaultAvatar from '../../../assets/images/defaultAvatar.png';
 import { useState } from 'react';
 import ProfileDataForm from './ProfileDataForm/ProfileDataForm';
+import { Modal, Form } from 'react-bootstrap';
 
 const ProfileInfo = ({profile, status, updateUserStatus, isOwner, savePhoto, updateProfile}) => {
 
-    let [editMode, setEditMode] = useState(false);
+    const [editMode, setEditMode] = useState(false);
     const activateEditMode = () => setEditMode(true);
     const deactivateEditMode = () => setEditMode(false);
+
+    const [show, setShow] = useState(false);
+    const handleClose = () => setShow(false);
+    const handleShow = () => setShow(true);
 
     const onMainPhotoSelected = (event) => {
         if (event.target.files.length) {
             savePhoto(event.target.files[0]);
         }
+        handleClose();
     }
 
     const onSubmit = (formData) => {
@@ -45,11 +51,23 @@ const ProfileInfo = ({profile, status, updateUserStatus, isOwner, savePhoto, upd
                             src={ profile.photos.large || defaultAvatar } 
                             alt="User photo"/>
                         { isOwner 
-                        && <input 
+                        && <button 
                             className={ styles.button } 
-                            type='file' 
-                            onChange={ onMainPhotoSelected } />}
+                            onClick={ handleShow }>Изменить</button>}
                     </div>
+                    <Modal show={ show } onHide={ handleClose } centered>
+                        <Modal.Header closeButton>
+                            <Modal.Title>Change photo</Modal.Title>
+                        </Modal.Header>
+                        <Modal.Body>
+                            <Form>
+                                <Form.Group controlId='formBasicChangePhoto'>
+                                    <Form.File label="Select file to change"  
+                                    onChange={ onMainPhotoSelected } />
+                                </Form.Group>
+                            </Form>
+                        </Modal.Body>
+                    </Modal>
                     <ProfileStatus 
                     status={ status }
                     updateUserStatus={ updateUserStatus } />
