@@ -1,75 +1,87 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "8af58de47dfd1bb27a96062f36f5f454",
+    "revision": "4c1b22fd2af35bf13c8b39ab55fc4bf7",
     "url": "/React_Training/index.html"
   },
   {
-    "revision": "581f944314d4bf19350c",
+    "revision": "102c61b785e68a64a600",
     "url": "/React_Training/static/css/2.11829350.chunk.css"
   },
   {
-    "revision": "2f5a3ebdc31b7a9c15f6",
+    "revision": "9184b48d57098b724246",
     "url": "/React_Training/static/css/3.80aa0ea7.chunk.css"
   },
   {
-    "revision": "db3a2366cdb0c7b6e169",
+    "revision": "26cbceeaba92686db981",
     "url": "/React_Training/static/css/4.912356bb.chunk.css"
   },
   {
-    "revision": "d3e7f6fae342c37d01de",
+    "revision": "a213eda8f8f03b109711",
     "url": "/React_Training/static/css/5.2b283795.chunk.css"
   },
   {
-    "revision": "d38a9437e4ca0a9b4d39",
+    "revision": "12bb6e3a9caf85eb8f12",
     "url": "/React_Training/static/css/6.77ab2826.chunk.css"
   },
   {
-    "revision": "226c9cf3d178e1268c65",
+    "revision": "abfce222021d45a316e8",
     "url": "/React_Training/static/css/7.fdff491f.chunk.css"
   },
   {
-    "revision": "a8ef3601cd0ea6b0f412",
-    "url": "/React_Training/static/css/main.26e1f0d4.chunk.css"
+    "revision": "b036eae8d87bfbacb6a9",
+    "url": "/React_Training/static/css/main.f703b6e5.chunk.css"
   },
   {
-    "revision": "581f944314d4bf19350c",
-    "url": "/React_Training/static/js/2.c99ceadd.chunk.js"
+    "revision": "102c61b785e68a64a600",
+    "url": "/React_Training/static/js/2.1ab19593.chunk.js"
   },
   {
     "revision": "3453b8997016469371284a28c0e873e2",
-    "url": "/React_Training/static/js/2.c99ceadd.chunk.js.LICENSE.txt"
+    "url": "/React_Training/static/js/2.1ab19593.chunk.js.LICENSE.txt"
   },
   {
-    "revision": "2f5a3ebdc31b7a9c15f6",
-    "url": "/React_Training/static/js/3.cb35f917.chunk.js"
+    "revision": "9184b48d57098b724246",
+    "url": "/React_Training/static/js/3.31c0c037.chunk.js"
   },
   {
-    "revision": "db3a2366cdb0c7b6e169",
-    "url": "/React_Training/static/js/4.c7a72222.chunk.js"
+    "revision": "26cbceeaba92686db981",
+    "url": "/React_Training/static/js/4.03bbb406.chunk.js"
   },
   {
-    "revision": "d3e7f6fae342c37d01de",
-    "url": "/React_Training/static/js/5.d22bfd3f.chunk.js"
+    "revision": "a213eda8f8f03b109711",
+    "url": "/React_Training/static/js/5.7deef129.chunk.js"
   },
   {
-    "revision": "d38a9437e4ca0a9b4d39",
-    "url": "/React_Training/static/js/6.b04ebe9d.chunk.js"
+    "revision": "12bb6e3a9caf85eb8f12",
+    "url": "/React_Training/static/js/6.c2a526a9.chunk.js"
   },
   {
-    "revision": "226c9cf3d178e1268c65",
-    "url": "/React_Training/static/js/7.438693ce.chunk.js"
+    "revision": "abfce222021d45a316e8",
+    "url": "/React_Training/static/js/7.4ec536d1.chunk.js"
   },
   {
-    "revision": "a8ef3601cd0ea6b0f412",
-    "url": "/React_Training/static/js/main.ebd3cfae.chunk.js"
+    "revision": "b036eae8d87bfbacb6a9",
+    "url": "/React_Training/static/js/main.32cb0cbf.chunk.js"
   },
   {
-    "revision": "e9742f1b726c4afe47f3",
-    "url": "/React_Training/static/js/runtime-main.483580f0.js"
+    "revision": "4d4e4d998511f5364130",
+    "url": "/React_Training/static/js/runtime-main.8cbe5044.js"
   },
   {
     "revision": "223507bbeb748f4f370b04926e6c21d8",
     "url": "/React_Training/static/media/anonimus.223507bb.jpg"
+  },
+  {
+    "revision": "db929343ae88da76301cf4ed9d66e91d",
+    "url": "/React_Training/static/media/edit_photo.db929343.svg"
+  },
+  {
+    "revision": "0353934b774d25302355b89cd4010dfa",
+    "url": "/React_Training/static/media/edit_profile_info.0353934b.svg"
+  },
+  {
+    "revision": "0e14b762991be1dc7b374a0b6c6a69f5",
+    "url": "/React_Training/static/media/error_404.0e14b762.svg"
   },
   {
     "revision": "5d668923090c384871d474b47829a91f",
