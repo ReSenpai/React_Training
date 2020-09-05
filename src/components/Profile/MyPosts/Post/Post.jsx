@@ -7,7 +7,7 @@ const Post = (props) => {
             <h3>{props.nickname}</h3>
             <div className={style.item}>
                 <img className={style.avatar} src={props.src} alt='avatar'></img>
-                { props.text }
+                <span>{ props.text }</span>
             </div>
             <span>Like {props.like} </span>
         </div>

@@ -1,10 +1,12 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import styles from './ProfileInfo.module.css';
 import Preloader from '../../common/Preloader/Preloader';
 import SocialMedia from '../../common/SocialMedia/SocialMedia';
 import ProfileStatus from './ProfileStatus/ProfileStatus';
 import defaultAvatar from '../../../assets/images/defaultAvatar.png';
 import ProfileDataForm from './ProfileDataForm/ProfileDataForm';
+import { ReactComponent as EditPhotoIcon } from '../../../assets/icons/edit_photo.svg';
+import { ReactComponent as EditProfileInfoIcon } from '../../../assets/icons/edit_profile_info.svg';
 import { Modal, Form } from 'react-bootstrap';
 import { FORM_ERROR } from 'final-form';
 
@@ -62,9 +64,9 @@ const ProfileInfo = ({
                             src={ profile.photos.large || defaultAvatar } 
                             alt="User photo"/>
                         { isOwner 
-                        && <button 
+                        && <EditPhotoIcon 
                             className={ styles.button } 
-                            onClick={ handleShow }>Изменить</button>}
+                            onClick={ handleShow }/>}
                     </div>
                     <Modal show={ show } onHide={ handleClose } centered>
                         <Modal.Header closeButton>
@@ -84,16 +86,15 @@ const ProfileInfo = ({
                     updateUserStatus={ updateUserStatus } />
                 </div>
                 <div className={ styles.infoWrapper }>
-                    { editMode 
-                        ? <ProfileDataForm 
-                            profile={ profile }
-                            onSubmit={ onSubmit }
-                            deactivateEditMode={ deactivateEditMode } /> 
-                        : <ProfileData 
-                            profile={ profile } 
-                            isOwner={ isOwner } 
-                            activateEditMode={ activateEditMode } /> 
-                    }
+                    <ProfileData 
+                        profile={ profile } 
+                        isOwner={ isOwner }
+                        activateEditMode={ activateEditMode } />
+                    <ProfileDataForm 
+                        profile={ profile }
+                        editMode={ editMode } 
+                        onSubmit={ onSubmit }
+                        deactivateEditMode={ deactivateEditMode } />
                 </div>
             </div>
         </div>
@@ -104,7 +105,7 @@ const ProfileInfo = ({
 const ProfileData = ({profile, isOwner, activateEditMode}) => {
     return (
         <div>
-            { isOwner && <div><button onClick={ activateEditMode }>edit</button></div> }
+            { isOwner && <div><EditProfileInfoIcon className={ styles.editProfileIcon } onClick={ activateEditMode }/></div> }
             <h2>{ profile.fullName }</h2>
             <div>
                 <b>Поиск работы: </b> { profile.lookingForAJob

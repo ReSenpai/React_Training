@@ -28,24 +28,21 @@
 .userPhotoContainer .button {
     display: none;
     position: absolute;
-    top: 31%;
-    left: 27%;
-    transform: translate(-50%, -50%);
-    -ms-transform: translate(-50%, -50%);
-    background-color: #555;
-    color: white;
-    font-size: 16px;
-    padding: 12px 24px;
-    border: none;
+    fill: var(--links);
+    top: 15%;
+    left: 40%;
+    transform: scale(1.5);
     cursor: pointer;
-    border-radius: 5px;
-    text-align: center;
 }
 
 .userPhotoContainer:hover .button {
     display: inline-block;
 }
-
 .infoWrapper {
     padding-left: 20px;
+}
+
+.editProfileIcon {
+    cursor: pointer;
+    fill: var(--links);
 }
