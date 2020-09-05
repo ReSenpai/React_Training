@@ -2,13 +2,13 @@ import React from 'react';
 import style from './Navbar.module.css';
 import { NavLink } from 'react-router-dom';
 import Friends from './Friends/Friends';
-import { ReactComponent as NewsIcon } from '../../assets/icons/news.svg'
-import { ReactComponent as ProfileIcon } from '../../assets/icons/profile.svg'
-import { ReactComponent as MessagesIcon } from '../../assets/icons/messages.svg'
-import { ReactComponent as MusicIcon } from '../../assets/icons/music.svg'
-import { ReactComponent as UsersIcon } from '../../assets/icons/users.svg'
-import { ReactComponent as SettingIcon } from '../../assets/icons/setting.svg'
-import { Container, Row, Col, Button, ButtonGroup } from 'react-bootstrap';
+import { ReactComponent as NewsIcon } from '../../assets/icons/news.svg';
+import { ReactComponent as ProfileIcon } from '../../assets/icons/profile.svg';
+import { ReactComponent as MessagesIcon } from '../../assets/icons/messages.svg';
+import { ReactComponent as MusicIcon } from '../../assets/icons/music.svg';
+import { ReactComponent as UsersIcon } from '../../assets/icons/users.svg';
+import { ReactComponent as SettingIcon } from '../../assets/icons/setting.svg';
+import { Container, Row, Col } from 'react-bootstrap';
 
 const Navbar = () => {
     return (

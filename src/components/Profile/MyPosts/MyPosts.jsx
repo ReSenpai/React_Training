@@ -5,7 +5,7 @@ import { Form, Field } from 'react-final-form'
 import { maxLengthCreator, composeValidators, voidCheck } from '../../../utils/validators/validators';
 import { Input } from '../../common/FormsControls/FormsControls';
 import { useState } from 'react';
-import { Form as FormBootsrap, Alert, Button, Modal } from 'react-bootstrap';
+import { Form as FormBootsrap, Button, Modal } from 'react-bootstrap';
 
 
 const MyPosts = (props) => {
