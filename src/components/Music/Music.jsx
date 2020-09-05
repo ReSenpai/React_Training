@@ -4,7 +4,9 @@ import style from './Music.module.css'
 const Music = (props) => {
     return (
         <div>
-            Music
+            <audio controls
+                src="https://stream.nightride.fm/nightride.mp3">
+            </audio>
         </div>
     )
 }
