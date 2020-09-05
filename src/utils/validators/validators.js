@@ -12,3 +12,9 @@ export const maxLengthCreator = (maxLength) => (value) => {
 
     return undefined; 
 }
+
+export const voidCheck = (value) => {
+  if (!value || value.trim().length <= 0) return `You can't send an empty line.`;
+
+  return undefined; 
+}
