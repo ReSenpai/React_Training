@@ -1,5 +1,5 @@
 import React, { Component, lazy } from 'react';
-import { HashRouter, Route, Switch } from 'react-router-dom';
+import { HashRouter, Route, Switch, Redirect } from 'react-router-dom';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './App.css';
 import Navbar from './components/Navbar/Navbar';
@@ -20,9 +20,18 @@ const UsersContainer = lazy(() => import('./components/Users/UsersContainer'));
 const SettingContainer = lazy(() => import('./components/Setting/SettingContainer'));
 
 class App extends Component {
+  catchAllUnhandledErrors = (reason, promise) => {
+    // alert('Some error occured');
+    console.log(promise);
+  }
 
   componentDidMount() {
     this.props.startInitialization();
+    window.addEventListener('unhandledrejection', this.catchAllUnhandledErrors);
+  }
+
+  componentWillUnmount() {
+    window.removeEventListener('unhandledrejection', this.catchAllUnhandledErrors);
   }
 
   render () {
@@ -38,6 +47,9 @@ class App extends Component {
             </Col>
             <Col xs={ 6 }>
               <Switch>
+                <Route exact path='/'
+                  render={ () => <Redirect to={'/profile'} />} />
+
                 <Route path='/profile/:userId?'
                   render={ () => <ProfileContainer />} />
       
