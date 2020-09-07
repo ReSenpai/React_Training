@@ -6,7 +6,7 @@ import { Form as FormBootsrap, Alert, Button } from 'react-bootstrap';
 
 const Login = ({getLogin, captcha}) => {
 
-    const onSubmit = (data) => getLogin(data);
+    const onSubmit = ({email, password, rememberMe, captcha}) => getLogin(email, password, rememberMe, captcha);
 
     return (
         <div>
