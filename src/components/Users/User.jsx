@@ -1,4 +1,4 @@
-import React from 'react';
+import React from 'react'; // we need this to make JSX compile
 import styles from './Users.module.css';
 import userPhoto from '../../assets/images/anonimus.jpg'
 import { NavLink } from 'react-router-dom';
