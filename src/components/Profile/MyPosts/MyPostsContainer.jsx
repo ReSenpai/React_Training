@@ -4,12 +4,13 @@ import {
 } from '../../../redux/profile_reducer';
 import MyPosts from './MyPosts';
 import { connect } from 'react-redux';
+import { getPosts } from '../../../redux/profile_selectors';
 
 
 const mapStateToProps = (state) => {
     return {
-        posts: state.profilePage.posts,
-        newPostText: state.profilePage.newPostText
+        posts: getPosts(state),
+        newPostText: state.profilePage.newPostText // maybe it's no longer in use
     }  
 }
 
