@@ -17,7 +17,7 @@ export const authAPI = {
         return instance.get(`auth/me`)
         .then(response => response.data);
     },
-    login (email, password, rememberMe = false, captcha = null) {
+    login ({email, password, rememberMe = false, captcha = null}) {
         return instance.post('/auth/login', {
             email,
             password,
@@ -91,6 +91,6 @@ export const headerAPI = {
 export const newsAPI = {
     search (name) {
         return jikan.get(`search/anime?q=${name}`)
-        .then(response => response.data);
+        .then(response => response.results);
     }
 }

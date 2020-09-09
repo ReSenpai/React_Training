@@ -58,9 +58,8 @@ export const setCaptcha = (captcha: string): SetCaptchaActionType => ({ type: SE
 
 export const getAuthUserData = () => async (dispatch: any) => {
     const response = await authAPI.authMe();
-
-    if (response. data.resultCode === 0) {
-        let {id, email, login} = response.data.data;
+    if (response.resultCode === 0) {
+        let {id, email, login} = response.data;
         dispatch(setAuthUserData(id, email, login, true))
     }
 }
@@ -70,8 +69,14 @@ export const getCaptcha = () => async (dispatch: any) => {
     dispatch(setCaptcha(url));
 }
 
-export const login = (email: string, password: string, rememberMe: boolean, captcha: string) => async (dispatch: any) => {
-    const data = await authAPI.login(email, password, rememberMe, captcha);
+type LoginDataType = {
+    email: string 
+    password: string
+    rememberMe: boolean
+    captcha: string
+}
+export const login = (loginData: LoginDataType) => async (dispatch: any) => {
+    const data = await authAPI.login(loginData);
     if (data.resultCode === 0) {
         dispatch(getAuthUserData())
     } else {
