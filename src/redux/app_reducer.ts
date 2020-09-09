@@ -2,12 +2,10 @@ import { getAuthUserData } from "./auth_reducer";
 
 const SET_INITIALIZATION = 'app/SET_INITIALIZATION';
 
-export type InitialStateType = {
-    isInitialized: boolean
+let initialState = {
+    isInitialized: false as boolean
 }
-let initialState: InitialStateType = {
-    isInitialized: false
-}
+export type InitialStateType = typeof initialState;
 
 const appReducer = (state = initialState, action: any): InitialStateType => {
 
