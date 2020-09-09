@@ -11,6 +11,8 @@ import {
 import { withRouter } from 'react-router-dom';
 import { withAuthRedirect } from '../../hoc/withAuthRedirect';
 import { compose } from 'redux';
+import { getProfile, getStatus } from '../../redux/profile_selectors';
+import { getUserId } from '../../redux/auth_selectors';
 
 const ProfileContainer = (props) => {
 
@@ -31,9 +33,9 @@ const ProfileContainer = (props) => {
 
 const mapStateToProps = (state) => {
     return ({
-        profile: state.profilePage.profile,
-        authorizedUserId: state.auth.userId,
-        status: state.profilePage.status
+        profile: getProfile(state),
+        authorizedUserId: getUserId(state),
+        status: getStatus(state)
     });
 }
 
