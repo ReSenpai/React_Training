@@ -1,9 +1,18 @@
-import React from 'react';
+import React, { ChangeEvent } from 'react';
 import { ReactComponent as MeditationIcon } from '../../../../assets/icons/self_improvement.svg' 
 import styles from './ProfileStatus.module.css';
 
+type PropsType = {
+    status: string
+    updateUserStatus: (newStatus: string) => void
+}
 
-class ProfileStatus extends React.Component {
+type StateType = {
+    editMode: boolean
+    status: string
+}
+
+class ProfileStatus extends React.Component<PropsType, StateType> {
 
     state = {
         editMode: false,
@@ -19,11 +28,11 @@ class ProfileStatus extends React.Component {
         this.props.updateUserStatus(this.state.status);
     }
 
-    onStatusChange = (event) => {
+    onStatusChange = (event: ChangeEvent<HTMLInputElement>) => {
         this.setState({ status: event.currentTarget.value });
     }
 
-    componentDidUpdate(prevProps, prevState) {
+    componentDidUpdate(prevProps: PropsType, prevState: StateType) {
         if (prevProps.status !== this.props.status) {
             this.setState({ status: this.props.status })
         }
