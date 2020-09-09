@@ -4,6 +4,7 @@ import { compose } from 'redux';
 import { connect } from 'react-redux';
 import { login } from '../../redux/auth_reducer';
 import { Redirect } from 'react-router-dom';
+import { getIsAuth, getCaptcha } from '../../redux/auth_selectors';
 
 const LoginContainer = ({login, isAuth, captcha}) => {
 
@@ -19,8 +20,8 @@ const LoginContainer = ({login, isAuth, captcha}) => {
 
 const mapStateToProps = (state) => {
     return {
-        isAuth: state.auth.isAuth,
-        captcha: state.auth.captcha
+        isAuth: getIsAuth(state),
+        captcha: getCaptcha(state)
     }
 }
 
