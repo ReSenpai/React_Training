@@ -7,7 +7,7 @@ import thunkMiddleware from 'redux-thunk';
 import newsReducer from "./news_reducer";
 import appReducer from "./app_reducer";
 
-let reducersPack = combineReducers({
+const rootReducer = combineReducers({
     profilePage: profileReducer,
     dialogsPage: dialogsReducer,
     usersPage: usersReducer,
@@ -15,11 +15,17 @@ let reducersPack = combineReducers({
     newsPage: newsReducer,
     app: appReducer
 });
+
+type RootReducerType = typeof rootReducer;
+export type AppStateType = ReturnType<RootReducerType>;
+
 /**
  * Develop tool helper.
  */
+// @ts-ignore
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
-const store = createStore(reducersPack, composeEnhancers(
+
+const store = createStore(rootReducer, composeEnhancers(
     applyMiddleware(thunkMiddleware)
 ));
 
