@@ -5,10 +5,21 @@ import Message from './Message/Message';
 import { Form, Field } from 'react-final-form'
 import { Textarea } from '../common/FormsControls/FormsControls';
 import { composeValidators, requiredField, maxLengthCreator } from '../../utils/validators/validators';
+import { DialogType, MessageType } from '../../types/types';
 
-const Dialogs = (props) => {
+type PropsType = {
+    dialogs: Array<DialogType>
+    messages: Array<MessageType>
+    sendMessage: (newMessageBody: string) => void
+}
 
-    let dialogElements = props.state.dialogs
+type Value = {
+    newMessageBody: string
+}
+
+const Dialogs: React.FC<PropsType> = ({dialogs, messages, sendMessage}) => {
+
+    let dialogElements = dialogs
         .map((dialog, i) => <DialogItem
             key={ i }
             name={ dialog.name }
@@ -16,22 +27,16 @@ const Dialogs = (props) => {
             avatar={ dialog.avatar } />
     );
 
-    let messagesElement = props.state.messages
+    let messagesElement = messages
         .map((message, i) => <Message
             key={ i }
             message={ message.message }
             type={ message.type } />
     );
 
-    let onSendMessage = (values) => {
-        props.sendMessage(values.newMessageBody);
+    let onSendMessage = (values: Value) => {
+        sendMessage(values.newMessageBody);
     }
-
-    let pressEnter = (event) => {
-        if (event.key === 'Enter') {
-            onSendMessage();
-        }
-    } 
 
     return (
         <div className={ style.dialogs }>
@@ -50,7 +55,11 @@ const Dialogs = (props) => {
     );
 }
 
-const AddMessageForm = (props) => {
+type PropsFormType = {
+    onSubmit: (values: Value) => void
+}
+
+const AddMessageForm: React.FC<PropsFormType> = (props) => {
     return (
         <Form
             onSubmit={ props.onSubmit }
