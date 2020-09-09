@@ -37,7 +37,7 @@ export type UserType = {
 export type DialogType = {
     id: number
     name: string
-    avatar: string | null
+    avatar?: string
 }
 export type MessageType = {
     id: number
