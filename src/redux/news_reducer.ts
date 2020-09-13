@@ -23,7 +23,7 @@ let initialState = {
 };
 export type InitialStateType = typeof initialState;
 
-const newsReducer = (state = initialState, action: any): InitialStateType => {
+const newsReducer = (state = initialState, action: ActionsTypes): InitialStateType => {
 
     switch (action.type) {
         case UPDATE_NEW_SEARCH_QUERY:
@@ -36,7 +36,9 @@ const newsReducer = (state = initialState, action: any): InitialStateType => {
     }
 }
 
-type UpdateNewSearchQueryActionType = {
+type ActionsTypes = UpdateNewSearchQueryActionType;
+
+export type UpdateNewSearchQueryActionType = {
     type: typeof UPDATE_NEW_SEARCH_QUERY
     newSearchQuery: string
 }
