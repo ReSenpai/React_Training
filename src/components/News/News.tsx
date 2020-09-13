@@ -1,9 +1,10 @@
-import React from 'react';
+import React, { ChangeEvent } from 'react';
 import styles from './News.module.css'
+import { PropsType } from './NewsContainer';
 
-const News = (props) => {
+const News: React.FC<PropsType> = (props) => {
 
-    const onSearchChange = (event) => {
+    const onSearchChange = (event: ChangeEvent<HTMLInputElement>) => {
         let text = event.target.value;
         props.updateNewSearchQuery(text);
         console.log(text)
