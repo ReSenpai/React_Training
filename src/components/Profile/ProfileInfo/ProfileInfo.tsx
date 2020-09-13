@@ -9,8 +9,19 @@ import { ReactComponent as EditPhotoIcon } from '../../../assets/icons/edit_phot
 import { ReactComponent as EditProfileInfoIcon } from '../../../assets/icons/edit_profile_info.svg';
 import { Modal, Form } from 'react-bootstrap';
 import { FORM_ERROR } from 'final-form';
+import { ProfileType } from '../../../types/types';
 
-const ProfileInfo = ({
+
+type PropsType = {
+    profile: ProfileType | null
+    status: string
+    isOwner: boolean
+    updateUserStatus: (status: string) => void
+    savePhoto: (file: string) => void
+    updateProfile: (profile: ProfileType) => void | any
+}
+
+const ProfileInfo: React.FC<PropsType> = ({
     profile, 
     status, 
     updateUserStatus, 
@@ -19,22 +30,23 @@ const ProfileInfo = ({
     updateProfile
 }) => {
 
-    const [editMode, setEditMode] = useState(false);
+    const [editMode, setEditMode] = useState<boolean>(false);
     const activateEditMode = () => setEditMode(true);
     const deactivateEditMode = () => setEditMode(false);
 
-    const [show, setShow] = useState(false);
+    const [show, setShow] = useState<boolean>(false);
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
 
-    const onMainPhotoSelected = (event) => {
+    const onMainPhotoSelected = (event: any) => {
         if (event.target.files.length) {
             savePhoto(event.target.files[0]);
         }
         handleClose();
     }
 
-    const onSubmit = async (formData) => {
+    const onSubmit = async (formData: any) => {
+        console.log(formData);
         const err = await updateProfile(formData);
         if (err) {
             return {[FORM_ERROR]: err}
@@ -102,7 +114,13 @@ const ProfileInfo = ({
     )    
 }
 
-const ProfileData = ({profile, isOwner, activateEditMode}) => {
+type ProfileDataPropsType = {
+    profile: ProfileType
+    isOwner: boolean
+    activateEditMode: () => void
+}
+
+const ProfileData: React.FC<ProfileDataPropsType> = ({profile, isOwner, activateEditMode}) => {
     return (
         <div>
             { isOwner && <div><EditProfileInfoIcon className={ styles.editProfileIcon } onClick={ activateEditMode }/></div> }
