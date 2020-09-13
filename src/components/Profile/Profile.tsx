@@ -1,11 +1,19 @@
 import React from 'react';
-import style from './Profile.module.css';
 import ProfileInfo from './ProfileInfo/ProfileInfo';
 import MyPostsContainer from './MyPosts/MyPostsContainer';
+import { MapDispatchPropsType, MapStatePropsType } from './ProfileContainer';
+import styled from 'styled-components';
 
-const Profile = (props) => {
+
+type OwnProps = {
+    isOwner: boolean
+}
+
+export type PropsType = MapStatePropsType & MapDispatchPropsType & OwnProps;
+
+const Profile: React.FC<PropsType> = (props) => {
     return (
-        <div className={ style.wrapper }>
+        <Wrapper>
             <ProfileInfo 
                 profile={ props.profile }
                 status={ props.status }
@@ -14,8 +22,13 @@ const Profile = (props) => {
                 savePhoto={ props.savePhoto }
                 updateProfile={ props.updateProfile } />
             <MyPostsContainer />
-        </div>
+        </Wrapper>
     );
 }
 
 export default Profile;
+
+
+const Wrapper = styled.div `
+    padding: 20px;
+`
