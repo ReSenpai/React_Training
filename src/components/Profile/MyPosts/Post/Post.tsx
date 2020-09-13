@@ -1,7 +1,16 @@
 import React from 'react';
 import style from './Post.module.css';
 
-const Post = (props) => {
+
+type PropsType = {
+    key: number
+    nickname: string
+    text: string
+    src: string
+    like: number
+}
+
+const Post: React.FC<PropsType> = (props) => {
     return (
         <div className={style.post__wrapper}>
             <h3>{props.nickname}</h3>
