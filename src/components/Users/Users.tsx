@@ -1,8 +1,8 @@
 import React from 'react';
-import styles from './Users.module.css';
 import Pagination from '../common/Pagination/Pagination';
 import User from './User';
 import { UserType } from '../../types/types';
+import styled from 'styled-components';
 
 type PropsType = {
     totalItemsCount: number
@@ -27,7 +27,7 @@ const Users: React.FC<PropsType> = ({
 }) => {
 
     return (
-        <div className={ styles.users__wrapper }>
+        <Wrapper>
             <Pagination {...{totalItemsCount, pageSize, currentPage, onPageChanged}} />
             {
                 users.map(user =>
@@ -36,8 +36,13 @@ const Users: React.FC<PropsType> = ({
                         {...{ user, unfollow, follow, followingInProgress }} />
                 )
             }
-        </div>
+        </Wrapper>
     )
 }
 
 export default Users;
+
+
+const Wrapper = styled.div `
+    padding-left: 50px;
+`
