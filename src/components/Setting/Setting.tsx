@@ -1,7 +1,11 @@
 import React from 'react';
 import style from './Setting.module.css'
 
-const Setting = (props) => {
+type PropsType = {
+
+}
+
+const Setting: React.FC<PropsType> = (props) => {
     return (
         <div>
             Setting
