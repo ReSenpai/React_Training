@@ -3,8 +3,20 @@ import { Form, Field } from 'react-final-form';
 import { Form as FormBootsrap, Alert, Button, Modal } from 'react-bootstrap';
 import { Input, Checkbox } from '../../../common/FormsControls/FormsControls';
 import { composeValidators, requiredField, maxLengthCreator } from '../../../../utils/validators/validators';
+import { ContactsType, ProfileType } from '../../../../types/types';
 
-const ProfileDataForm = ({profile, onSubmit, deactivateEditMode, editMode}) => {
+type PropsType = {
+    profile: ProfileType
+    onSubmit: (formData: any) => void | any
+    deactivateEditMode:  () => void
+    editMode: boolean
+}
+
+type StateType = {
+    contacts: ContactsType
+}
+
+const ProfileDataForm: React.FC<PropsType> = ({profile, onSubmit, deactivateEditMode, editMode}) => {
     return (
         <Form
             initialValues={ profile } onSubmit={ onSubmit }
@@ -76,7 +88,11 @@ const ProfileDataForm = ({profile, onSubmit, deactivateEditMode, editMode}) => {
     )
 }
 
-const SocialMediaForm = ({contacts}) => {
+type SocialMediaPropsType = {
+    contacts: ContactsType
+}
+
+const SocialMediaForm: React.FC<SocialMediaPropsType> = ({contacts}): any => {
 
     return Object.keys(contacts).map(key => {
         return (
