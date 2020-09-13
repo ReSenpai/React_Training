@@ -13,8 +13,30 @@ import { withAuthRedirect } from '../../hoc/withAuthRedirect';
 import { compose } from 'redux';
 import { getProfile, getStatus } from '../../redux/profile_selectors';
 import { getUserId } from '../../redux/auth_selectors';
+import { ProfileType } from '../../types/types';
+import { AppStateType } from '../../redux/redux_store';
 
-const ProfileContainer = (props) => {
+export type MapStatePropsType = {
+    profile: ProfileType | null
+    authorizedUserId: number | null
+    status: string
+}
+
+export type MapDispatchPropsType = {
+    getUserProfile: (userId: number) => void
+    getUserStatus: (userId: number) => void
+    updateUserStatus: (status: string) => void
+    savePhoto: (file: string) => void
+    updateProfile: (profile: ProfileType) => void | any
+}
+
+type OwnPropsType = {
+    match: any
+}
+
+type PropsType = MapStatePropsType & MapDispatchPropsType & OwnPropsType;
+
+const ProfileContainer: React.FC<PropsType> = (props) => {
 
     let userId = props.match.params.userId || props.authorizedUserId;
 
@@ -26,12 +48,12 @@ const ProfileContainer = (props) => {
 
 
     return (
-        <Profile { ...props } isOwner={!props.match.params.userId} />
+        <Profile { ...props } isOwner={ !props.match.params.userId } />
     )
 }
 
 
-const mapStateToProps = (state) => {
+const mapStateToProps = (state: AppStateType): MapStatePropsType => {
     return ({
         profile: getProfile(state),
         authorizedUserId: getUserId(state),
@@ -40,7 +62,7 @@ const mapStateToProps = (state) => {
 }
 
 export default compose(
-    connect(mapStateToProps, {
+    connect<MapStatePropsType, MapDispatchPropsType, OwnPropsType, AppStateType>(mapStateToProps, {
         getUserProfile,
         getUserStatus,
         updateUserStatus, 
