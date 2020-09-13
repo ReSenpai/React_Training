@@ -6,9 +6,14 @@ import { maxLengthCreator, composeValidators, voidCheck } from '../../../utils/v
 import { Input } from '../../common/FormsControls/FormsControls';
 import { useState } from 'react';
 import { Form as FormBootsrap, Button, Modal } from 'react-bootstrap';
+import { PropsType } from './MyPostsContainer';
 
 
-const MyPosts = (props) => {
+type ValuesType = {
+    newPostText: string
+}
+
+const MyPosts: React.FC<PropsType> = (props) => {
     let postsElement = props.posts.map((post, i) => <Post
         key={ i }
         nickname={ post.nickname }
@@ -21,14 +26,14 @@ const MyPosts = (props) => {
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
     
-    let onAddPost = (values) => {
+    let onAddPost = (values: ValuesType) => {
         props.addPost(values.newPostText);
         // .replace(/\r?\n/g, '\n')
         handleClose();
         values.newPostText = '';
     }
 
-    let pressEnter = (callback) => (event) => {
+    let pressEnter = (callback: any) => (event: any) => {
         if (event.shiftKey && event.key === 'Enter') {
             // add space
         } 
@@ -56,7 +61,14 @@ const MyPosts = (props) => {
     );
 }
 
-const AddNewPostForm = (props) => {
+type AddNewPostFormType = {
+    onSubmit: (values: ValuesType) => void
+    pressEnter: (callback: any) => (event: any) => void
+    show: boolean
+    handleClose: () => void
+}
+
+const AddNewPostForm: React.FC<AddNewPostFormType> = (props) => {
 
     return (
         <Form
