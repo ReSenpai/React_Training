@@ -32,6 +32,10 @@ textarea,
 input {
   outline:0;
 }
+
+button:active {
+  outline: 0;
+}
 /*
  * App style
 */
