@@ -19,14 +19,14 @@ import { AppStateType } from '../../redux/redux_store';
 export type MapStatePropsType = {
     profile: ProfileType | null
     authorizedUserId: number | null
-    status: string
+    status: string | null
 }
 
 export type MapDispatchPropsType = {
     getUserProfile: (userId: number) => void
     getUserStatus: (userId: number) => void
-    updateUserStatus: (status: string) => void
-    savePhoto: (file: string) => void
+    updateUserStatus: (status: string | null) => void
+    savePhoto: (file: File) => void
     updateProfile: (profile: ProfileType) => void | any
 }
 

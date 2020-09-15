@@ -14,10 +14,10 @@ import { ProfileType } from '../../../types/types';
 
 type PropsType = {
     profile: ProfileType | null
-    status: string
+    status: string | null
     isOwner: boolean
-    updateUserStatus: (status: string) => void
-    savePhoto: (file: string) => void
+    updateUserStatus: (status: string | null) => void
+    savePhoto: (file: File) => void
     updateProfile: (profile: ProfileType) => void | any
 }
 

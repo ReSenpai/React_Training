@@ -20,7 +20,7 @@ let initialState = {
         { id: 5, nickname: 'Solo', text: 'Olivia', avatar: 'https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcRTB1XNd7zac9ZAJs3LHlgHbGdhVsjyohiqHQ&usqp=CAU', like: 4 }
     ] as Array<PostType>,
     profile: null as ProfileType | null,
-    status: '' as string
+    status: '' as string | null
 };
 
 export type InitialStateType = typeof initialState;
@@ -94,9 +94,9 @@ type SetUserProfileActionType = {
 export const setUserProfile = (profile: ProfileType): SetUserProfileActionType => ({ type: SET_USER_PROFILE, profile });
 type SetStatusActionType = {
     type: typeof SET_STATUS
-    status: string
+    status: string | null
 }
-export const setStatus = (status: string): SetStatusActionType => ({ type: SET_STATUS, status });
+export const setStatus = (status: string | null): SetStatusActionType => ({ type: SET_STATUS, status });
 type SavePhotoSuccessType = {
     type: typeof SAVE_PHOTO_SUCCESS
     photos: PhotosType
@@ -119,21 +119,23 @@ export const getUserStatus = (userId: number): ThunkType => async (dispatch) => 
     dispatch(setStatus(response.data));
 }
 
-export const updateUserStatus = (status: string): ThunkType => async (dispatch) => {    
+export const updateUserStatus = (status: string | null): ThunkType => async (dispatch) => {    
     const response = await profileAPI.updateStatus(status);
+    console.log(response);
     if(response.data.resultCode === 0) {
         dispatch(setStatus(status));
     }
 }
 
-export const savePhoto = (file: string): ThunkType => async (dispatch) => {    
+export const savePhoto = (file: File): ThunkType => async (dispatch) => {  
     const response = await profileAPI.savePhoto(file);
     if(response.resultCode === 0) {
         dispatch(savePhotoSuccess(response.data.photos));
     }
 }
 
-export const updateProfile = (profile: ProfileType): ThunkType => async (dispatch, getState) => {
+export const updateProfile = (profile: ProfileType)
+: ThunkAction<Promise<void | string>, AppStateType, unknown, ActionsTypes> => async (dispatch, getState) => {
     const userId = getState().auth.userId;    
     const response = await profileAPI.updateProfile(profile);
     if(response.resultCode === 0) {
@@ -144,6 +146,7 @@ export const updateProfile = (profile: ProfileType): ThunkType => async (dispatc
         : 'Some error'
         return error;
     }
+    console.log(response);
 }
 
 

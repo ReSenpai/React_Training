@@ -3,13 +3,13 @@ import { ReactComponent as MeditationIcon } from '../../../../assets/icons/self_
 import styles from './ProfileStatus.module.css';
 
 type PropsType = {
-    status: string
-    updateUserStatus: (newStatus: string) => void
+    status: string | null
+    updateUserStatus: (newStatus: string | null) => void
 }
 
 type StateType = {
     editMode: boolean
-    status: string
+    status: string | null
 }
 
 class ProfileStatus extends React.Component<PropsType, StateType> {

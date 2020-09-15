@@ -1,6 +1,6 @@
 import axios from 'axios';
 import { LoginDataType } from '../redux/auth_reducer';
-import { ProfileType, UserType } from '../types/types';
+import { PhotosType, ProfileType, UserType } from '../types/types';
 
 const instance = axios.create({
     withCredentials: true,
@@ -95,35 +95,53 @@ export const usersAPI = {
         .then(response => response.data);
     }
 }
-
+type GetUserProfileType = ProfileType;
+type GetStatusType = string | null;
+type UpdateStatusType = {
+    data: {}
+    messages: Array<string>
+    resultCode: ResultCodesEnum
+}
+type SavePhotoType = {
+    data: {
+        photos: PhotosType
+    }
+    messages: Array<string>
+    resultCode: ResultCodesEnum
+}
+type UpdateProfileType = {
+    data: {}
+    messages: Array<string>
+    resultCode: ResultCodesEnum
+}
 export const profileAPI = {
     getUserProfile (userId: number | null) {
-        return instance.get(`profile/${userId}`)
-        .then(response => response.data );
+        return instance.get<GetUserProfileType>(`profile/${userId}`)
+        .then(response => response.data);
     },
     authMe () {
         console.warn('In future updates, this method will be removed. Please use a similar method from "authAPI".');
         return authAPI.authMe();   
     },
-    getStatus(userId: number) {
-        return instance.get(`profile/status/${userId}`);
+    getStatus (userId: number) {
+        return instance.get<GetStatusType>(`profile/status/${userId}`);
     },
-    updateStatus(status: string) {
-        return instance.put('profile/status', {
+    updateStatus(status: string | null) {
+        return instance.put<UpdateStatusType>('profile/status', {
             status: status
         });
     },
-    savePhoto(photoFile: any) {
+    savePhoto(photoFile: File) {
         const formData = new FormData();
         formData.append('image', photoFile);
-        return instance.put(`profile/photo`, formData, {
+        return instance.put<SavePhotoType>(`profile/photo`, formData, {
             headers: {
                 'Content-Type': 'multipart/form-data'
             }
         }).then(response => response.data);
     },
     updateProfile(profile: ProfileType) {
-        return instance.put('profile', profile).then(response => response.data);
+        return instance.put<UpdateProfileType>('profile', profile).then(response => response.data);
     }
 }
 
@@ -140,6 +158,3 @@ export const newsAPI = {
         .then(response => response);
     }
 }
-
-
-authAPI.authMe().then(res => res)
