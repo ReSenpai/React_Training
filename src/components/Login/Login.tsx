@@ -4,9 +4,9 @@ import { Input, Checkbox } from '../common/FormsControls/FormsControls';
 import { requiredField } from '../../utils/validators/validators';
 import { Form as FormBootsrap, Alert, Button } from 'react-bootstrap';
 
-const Login = ({getLogin, captcha}) => {
+const Login = ({getLogin, captcha}: any) => {
 
-    const onSubmit = (data) => getLogin(data);
+    const onSubmit = (data: any) => getLogin(data);
 
     return (
         <div>
@@ -18,7 +18,7 @@ const Login = ({getLogin, captcha}) => {
     );
 }
 
-const LoginForm = ({onSubmit, captcha}) => {
+const LoginForm = ({onSubmit, captcha}: any) => {
     return (
         <Form
             onSubmit={onSubmit}

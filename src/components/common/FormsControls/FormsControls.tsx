@@ -2,7 +2,7 @@ import React from 'react';
 import styles from './FormControls.module.css';
 import { Form } from 'react-bootstrap';
 
-const Element = Element => ({ input, meta: {touched, error}, ...props }) => {
+const Element = (Element: any) => ({ input, meta: {touched, error}, ...props }: any) => {
     
     const hasError = touched && error;
     
